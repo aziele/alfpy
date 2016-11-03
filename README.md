@@ -5,7 +5,7 @@ alfpy is a bionformatics Python package that provides alignment-free framework t
 
 ## Requirements
 
-alfpy requires a Python version 2.7 or >= 3.3 and NumPy (http://www.numpy.org/).
+alfpy requires a Python (https://www.python.org/) version 2.7 or >= 3.3 and NumPy (http://www.numpy.org/).
 
 
 ## License
