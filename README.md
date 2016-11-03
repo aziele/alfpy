@@ -1,7 +1,8 @@
 # alfpy
-http://www.combio.pl/alfree
 
 alfpy is a bionformatics Python package that provides alignment-free framework to compare biological sequences (DNA/RNA/protein) and infers their phylogenetic relationships.
+
+alfpy is also available for free as web application: http://www.combio.pl/alfree
 
 ## Requirements
 
