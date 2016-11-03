@@ -6,3 +6,4 @@ alfpy is a Python package that provides alignment-free framework to compare biol
 
 
 
+alfpy is under the BSD license; see doc/LICENSE.txt. Distribution, modification and redistribution, incorporation into other software, and pretty much everything else is allowed.
