@@ -7,9 +7,7 @@ from alfpy import word_bool_distance
 from alfpy import word_pattern
 
 
-
 def get_parser():
-
     parser = argparse.ArgumentParser(
         description='''Calculate distances between DNA/protein sequences based 
         on boolean 1-D vectors of word counting occurrences.''',
@@ -66,7 +64,6 @@ def validate_args(parser):
         pass
     else:
         parser.error("Specify either: --word_size or --word_pattern.")
-
     return args
 
 
@@ -90,6 +87,7 @@ def main():
         oh.close()
     else:
         matrix.display(args.outfmt)
+
 
 if __name__ == '__main__':
     main()

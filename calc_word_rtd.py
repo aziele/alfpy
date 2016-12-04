@@ -8,9 +8,7 @@ from alfpy.utils import seqrecords
 from alfpy import word_pattern
 
 
-
 def get_parser():
-
     parser = argparse.ArgumentParser(
         description='''Calculate distances between protein/DNA sequences based 
         on Return Time Distribution (RTD) of words\' occurrences and their 
@@ -55,7 +53,6 @@ def get_parser():
         # parser.print_help()
         parser.print_usage() # for just the usage line
         parser.exit()
-
 
     return parser
 
@@ -106,6 +103,7 @@ def main():
         oh.close()
     else:
         matrix.display(args.outfmt)
+
 
 if __name__ == '__main__':
     main()

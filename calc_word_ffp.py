@@ -1,5 +1,6 @@
 import argparse
 import sys
+
 from alfpy import word_vector
 from alfpy import word_distance
 from alfpy.utils import distmatrix
@@ -9,7 +10,6 @@ from alfpy.utils.data import seqcontent
 
 
 def get_parser():
-
     parser = argparse.ArgumentParser(
         description='''Calculate distance between DNA/protein sequences based
         on feature frequency profiles (FFPs) of words.''',
@@ -81,7 +81,6 @@ def validate_args(parser):
 
 
 def main():
-
     parser = get_parser()
     args = validate_args(parser)
 

@@ -9,7 +9,6 @@ from alfpy.utils import seqrecords
 
 
 def get_parser():
-
     parser = argparse.ArgumentParser(
         description='''Calculate d2 distance between DNA/protein sequences based
         on subsequence (words) occurrences.''',
@@ -54,7 +53,6 @@ def get_parser():
         # parser.print_help()
         parser.print_usage() # for just the usage line
         parser.exit()
-
 
     return parser
 
@@ -107,6 +105,7 @@ def main():
         oh.close()
     else:
         matrix.display(args.outfmt)
+
 
 if __name__ == '__main__':
     main()

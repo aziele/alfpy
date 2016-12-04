@@ -5,10 +5,7 @@ from libs.utils import distmatrix
 from libs.utils import seqrecords
 
 
-
-
 def get_parser():
-
     parser = argparse.ArgumentParser(
         description='''Calculate distances between DNA/protein sequences based 
         on boolean 1-D vectors of word counting occurrences.''',
@@ -55,6 +52,7 @@ def validate_args(parser):
             parser.error('Word size must be >= 1.')
     return args
 
+
 def main():
     parser = get_parser()
     args = validate_args(parser)
@@ -69,6 +67,7 @@ def main():
         oh.close()
     else:
         matrix.display(args.outfmt)
+
 
 if __name__ == '__main__':
     main()

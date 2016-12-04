@@ -33,20 +33,16 @@ def get_parser():
     group = parser.add_argument_group("OTHER OPTIONS")
     group.add_argument("-h", "--help", action="help", 
                        help="show this help message and exit")
-
     if len(sys.argv[1:])==0:
         # parser.print_help()
         parser.print_usage() # for just the usage line
         parser.exit()
-
-
     return parser
 
 
 def validate_args(parser):
     args = parser.parse_args()
     return args
-
 
 
 def main():
@@ -63,6 +59,7 @@ def main():
         oh.close()
     else:
         matrix.display(args.outfmt)
+
 
 if __name__ == '__main__':
     main()

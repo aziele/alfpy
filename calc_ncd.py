@@ -6,7 +6,6 @@ from alfpy.utils import seqrecords
 
 
 def get_parser():
-
     parser = argparse.ArgumentParser(
         description='''Calculate distances between DNA/protein sequences based 
         on Normalized Compression Distance (NCD)''',
@@ -33,14 +32,12 @@ def get_parser():
         parser.print_usage() # for just the usage line
         parser.exit()
 
-
     return parser
 
 
 def validate_args(parser):
     args = parser.parse_args()
     return args
-
 
 
 def main():
@@ -57,6 +54,7 @@ def main():
         oh.close()
     else:
         matrix.display(args.outfmt)
+
 
 if __name__ == '__main__':
     main()

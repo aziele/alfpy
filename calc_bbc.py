@@ -6,8 +6,6 @@ from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
 
 
-
-
 def get_parser():
     parser = argparse.ArgumentParser(
         description='''Calculate distance between DNA/protein sequences based on
@@ -51,7 +49,6 @@ def validate_args(parser):
     return args
 
 
-
 def main():
     parser = get_parser()
     args = validate_args(parser)
@@ -67,6 +64,7 @@ def main():
         oh.close()
     else:
         matrix.display(args.outfmt)
+
 
 if __name__ == '__main__':
     main()

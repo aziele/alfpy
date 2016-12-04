@@ -7,10 +7,7 @@ from alfpy.utils import seqrecords
 from alfpy import word_pattern
 
 
-
-
 def get_parser():
-
     parser = argparse.ArgumentParser(
         description='''Calculate compositional distances between DNA/protein 
         sequences based on word (of length k) occurrences using a Markov model
@@ -49,7 +46,6 @@ def get_parser():
         parser.print_usage() # for just the usage line
         parser.exit()
 
-
     return parser
 
 
@@ -76,8 +72,6 @@ def validate_args(parser):
               parser.error('''word pattern lengths do not follow k, k-1, k-2''')
 
         args.word_patterns = l
-
-
     else:
         parser.error("Specify either: --word_size or --word_pattern.")
     return args
@@ -107,6 +101,7 @@ def main():
         oh.close()
     else:
         matrix.display(args.outfmt)
+
 
 if __name__ == '__main__':
     main()
