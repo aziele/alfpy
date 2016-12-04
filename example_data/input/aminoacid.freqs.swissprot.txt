@@ -1,0 +1,24 @@
+# UniProtKB/Swiss-Prot protein knowledgebase release 2016_09 statistics
+# Release 2016_09 of 05-Oct-16 of UniProtKB/Swiss-Prot contains 552259 sequence entries,
+# comprising 197423140 amino acids abstracted from 247204 references.
+# http://web.expasy.org/docs/relnotes/relstat.html
+A	0.0826
+Q	0.0393
+L	0.0965
+S	0.0659
+R	0.0553
+E	0.0674
+K	0.0583
+T	0.0534
+N	0.0406
+G	0.0708
+M	0.0241
+W	0.0109
+D	0.0546
+H	0.0227
+F	0.0386
+Y	0.0292
+C	0.0137
+I	0.0594
+P	0.0471
+V	0.0687
