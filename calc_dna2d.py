@@ -16,7 +16,6 @@ def get_parser():
                        help='input FASTA sequence filename', required=True, 
                        type=argparse.FileType('r'), metavar="FILE")
  
-
     group = parser.add_argument_group('OPTIONAL ARGUMENTS')
     group.add_argument('--vector', '-v', choices=['2DSV', '2DNV', '2DMV'],
                         help='vector type [default: %(default)s]',
@@ -48,11 +47,9 @@ def validate_args(parser):
     args = parser.parse_args()
     if args.vector == '2DMV' and args.ndim is None:
         parser.error("--vector 2DMV requires the --ndim")
-
-    # wielkosc mk zmienic jako range. znalezc artykul.
-    #http://stackoverflow.com/questions/18700634/python-argparse-integer-condition-12
+    # TODO: mk as a range
+    # http://stackoverflow.com/questions/18700634/python-argparse-integer-condition-12
     return args
-
 
 
 def main():
