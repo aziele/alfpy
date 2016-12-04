@@ -28,11 +28,10 @@ Installation
 Install using pip
 -----------------
 
-Use pip_ to download, build, and install alfpy and its dependencies:
+Use `pip <https://pip.pypa.io/en/stable/installing/>`_ to download, build, and install alfpy and its dependencies:
 
     pip install alfpy
 
-.. _pip: http://www.pip-installer.org/
 
 Install from GitHub
 -------------------
