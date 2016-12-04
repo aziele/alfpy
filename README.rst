@@ -11,8 +11,8 @@ that let you compare unaligned FASTA sequences with more than 40 distance method
 The official source code repository is at: https://github.com/aziele/alfpy
 
 alfpy is also available as a web app: http://www.combio.pl/alfree
-
-
+|
+|
 Requirements
 ------------
 
@@ -20,8 +20,8 @@ alfpy requires:
 
 1. Python (https://www.python.org/) version 2.7 or >= 3.3
 2. NumPy (http://www.numpy.org/).
-
-
+|
+|
 Installation
 ============
 
