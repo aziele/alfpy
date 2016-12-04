@@ -17,6 +17,7 @@ Requirements
 ------------
 
 alfpy requires:
+
 1. Python (https://www.python.org/) version 2.7 or >= 3.3
 2. NumPy (http://www.numpy.org/).
 
@@ -27,7 +28,7 @@ Installation
 Install using pip
 -----------------
 
-Use `pip<http://www.pip-installer.org/>` to download, build, and install alfpy and its dependencies:
+Use `pip<http://www.pip-installer.org/>`_ to download, build, and install alfpy and its dependencies:
     pip install alfpy
 
 
