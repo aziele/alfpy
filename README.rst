@@ -13,7 +13,6 @@ The official source code repository is at: https://github.com/aziele/alfpy
 alfpy is also available as a web app: http://www.combio.pl/alfree
 
 |
-|
 
 Requirements
 ------------
@@ -23,7 +22,6 @@ alfpy requires:
 1. Python (https://www.python.org/) version 2.7 or >= 3.3
 2. NumPy (http://www.numpy.org/).
 
-|
 |
 
 Installation
@@ -47,12 +45,14 @@ source code, go to this directory at the command line, and type::
 
 Here you can replace ``python`` with a specific version, e.g. ``python3.5``.
 
+|
 
 Alfpy usage
 ===========
 
 The examples of using Alfpy are available at: http://www.combio.pl/alfree/download/.
 
+|
 
 License
 -------
