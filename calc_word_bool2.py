@@ -16,7 +16,7 @@ def get_parser():
     group.add_argument('--fasta', '-f',
                        help='input FASTA sequence filename', required=True,
                        type=argparse.FileType('r'), metavar="FILE")
-    group.add_argument('--word_size', '-s', metavar="N",
+    group.add_argument('--word_size', '-s', metavar="N", required=True,
                        help='word size for creating word patterns',
                        type=int)
 
@@ -58,7 +58,7 @@ def main():
     args = validate_args(parser)
 
     seq_records = seqrecords.read_fasta(args.fasta)
-    dist = word_sets.Distance(seq_records, args.word_size, args.distance)
+    dist = word_sets_distance.Distance(seq_records, args.word_size, args.distance)
     matrix = distmatrix.create(seq_records.id_list, dist)
 
     if args.out:
