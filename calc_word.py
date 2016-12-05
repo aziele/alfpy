@@ -127,6 +127,7 @@ def main():
     args = validate_args(parser)
 
     seq_records = seqrecords.read_fasta(args.fasta)
+
     if args.word_size:
         p = word_pattern.create(seq_records.seq_list, args.word_size)
     else:

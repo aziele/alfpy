@@ -22,7 +22,7 @@ setup(
      'calc_wmetric.py',
      'calc_word.py',
      'calc_word_bool.py',
-     'calc_word_bool2.py',
+     'calc_word_sets.py',
      'calc_word_comp.py',
      'calc_word_d2.py',
      'calc_word_ffp.py',
