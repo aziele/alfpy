@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import argparse
 import sys
 from alfpy import word_sets_distance

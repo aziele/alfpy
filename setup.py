@@ -3,8 +3,8 @@ from setuptools import setup
 
 setup(
    name='alfpy',
-   version='1.0.2',
-   description="Alignment-free package to compare DNA/RNA/protein sequences.",
+   version='1.0.3',
+   description="Alignment-free package to compare DNA/RNA/protein sequences (bioinformatics).",
    author='Andrzej Zielezinski',
    keywords='alignment-free bioinformatics sequence DNA protein homology phylogeny',
    license="MIT",

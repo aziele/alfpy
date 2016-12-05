@@ -1,5 +1,8 @@
+#! /usr/bin/env python
+
 import argparse
 import sys
+
 from alfpy import word_vector
 from alfpy import word_distance
 from alfpy.utils import distmatrix
