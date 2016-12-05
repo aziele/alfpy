@@ -58,7 +58,8 @@ class Pattern:
             - number of word occurrences in input sequences
             - number of input sequences the word is present
             - word/pattern
-            - pairs of integer numbers (seq number: number of words)
+            - pairs of integer numbers (seq number: number of times a 
+              given word appears in this sequence)
 
         Examples:
             >>> print(p._alfree_format())
