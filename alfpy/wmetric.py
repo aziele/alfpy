@@ -32,7 +32,7 @@ def count_seq_chars(seq, alphabet):
     """
     l = [0 for c in alphabet]
     for i, c in enumerate(alphabet):
-        l[i] += seq.upper().count(c)
+        l[i] += seq.count(c)
     return l
 
 

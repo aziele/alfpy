@@ -155,7 +155,7 @@ class WeightModel:
         l = []
         for pat in patterns.pat_list:
             value = 1.0
-            for symbol in pat.upper():
+            for symbol in pat:
                 value *= self.char_weights.get(symbol, 1.0)
             l.append(value)
         l = np.array(l)
@@ -350,7 +350,7 @@ class EquilibriumFreqs(WordModel):
     def probabilities(self, word):
         result = []
         value = 1.0
-        for symbol in word.upper():
+        for symbol in word:
             value *= self._equilibrium_frequencies.get(symbol, 0.0)
             result.append(value)
         return result

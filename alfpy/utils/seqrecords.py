@@ -22,7 +22,8 @@ class SeqRecords:
         """
         self.count = 0 if not id_list else len(seq_list)
         self.id_list = id_list if id_list else []
-        self.seq_list = seq_list if seq_list else []
+        # Make all sequences uppercased.
+        self.seq_list = [s.upper() for s in seq_list] if seq_list else []
 
     def add(self, id, seq):
         """Add a sequence record to the existing collection.
@@ -35,7 +36,7 @@ class SeqRecords:
             >>> seq_record.add("seq3", "TGCTGA")
         """
         self.id_list.append(id)
-        self.seq_list.append(seq)
+        self.seq_list.append(seq.upper())
         self.count += 1
 
     def fasta(self):
