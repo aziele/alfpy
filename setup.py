@@ -3,10 +3,10 @@ from setuptools import setup
 
 setup(
    name='alfpy',
-   version='1.0.0',
-   description="alignment-free package to compare DNA/RNA/protein sequences",
+   version='1.0.2',
+   description="Alignment-free package to compare DNA/RNA/protein sequences.",
    author='Andrzej Zielezinski',
-   keywords='alignment-free bioinformatics sequence DNA protein',
+   keywords='alignment-free bioinformatics sequence DNA protein homology phylogeny',
    license="MIT",
    author_email='andrzejz@amu.edu.pl',
    url="http://www.combio.pl/alfree",
