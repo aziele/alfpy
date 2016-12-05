@@ -1,4 +1,4 @@
-"""Distance methods between two boolean vectors (representing word 
+"""Distance methods between two boolean vectors (representing word
 occurrences).
 
 References:
@@ -13,7 +13,7 @@ from .utils import distance
 
 def _nbool_correspond_ft_tf(u, v):
     """Function used by some distance methods (in Distance class).
-    Based on: https://github.com/scipy/scipy    
+    Based on: https://github.com/scipy/scipy
 
     Args:
         u (numpy.ndarray) : boolean vector, shape: (N, 1)
@@ -63,7 +63,6 @@ def _nbool_correspond_all(u, v):
     return (nff, nft, ntf, ntt)
 
 
-
 class Distance(distance.Distance):
     """Combine vector boolean data (numpy.ndarray) with distance method.
 
@@ -96,9 +95,9 @@ class Distance(distance.Distance):
         return float(2.0 * ntf * nft) / float(ntt * nff + ntf * nft)
 
     def pwdist_rogerstanimoto(self, seq1idx, seq2idx):
-        """Compute the Rogers-Tanimoto dissimilarity between two boolean 
+        """Compute the Rogers-Tanimoto dissimilarity between two boolean
         1-D arrays.
-     
+
         Returns:
             distance value (double)
 
@@ -106,29 +105,28 @@ class Distance(distance.Distance):
         u = self[seq1idx]
         v = self[seq2idx]
         (nff, nft, ntf, ntt) = _nbool_correspond_all(u, v)
-        return float(2.0 * (ntf + nft)) / float(ntt + nff + (2.0 * (ntf + nft)))
-
+        r = float(2.0 * (ntf + nft)) / float(ntt + nff + (2.0 * (ntf + nft)))
+        return r
 
     def pwdist_russellrao(self, seq1idx, seq2idx):
         """Compute the Russell-Rao dissimilarity between two boolean 1-D arrays.
-        
+
         Returns:
             distance value (double)
 
         """
         u = self[seq1idx]
         v = self[seq2idx]
-        
+
         ntt = (u & v).sum()
         return float(len(u) - ntt) / float(len(u))
 
-
     def pwdist_sokalmichener(self, seq1idx, seq2idx):
-        """Compute the Sokal-Michener dissimilarity 
+        """Compute the Sokal-Michener dissimilarity
         between two boolean 1-D arrays.
 
         Returns:
-            distance value (double)        
+            distance value (double)
 
         """
         u = self[seq1idx]
@@ -139,11 +137,11 @@ class Distance(distance.Distance):
         return float(2.0 * (ntf + nft)) / float(ntt + nff + 2.0 * (ntf + nft))
 
     def pwdist_sokalsneath(self, seq1idx, seq2idx):
-        """Compute the Sokal-Sneath dissimilarity 
+        """Compute the Sokal-Sneath dissimilarity
         between two boolean 1-D arrays.
 
         Returns:
-            distance value (double)  
+            distance value (double)
 
         """
         u = self[seq1idx]
@@ -154,12 +152,11 @@ class Distance(distance.Distance):
         denom = ntt + 2.0 * (ntf + nft)
         if denom == 0:
             raise ValueError('Sokal-Sneath dissimilarity is not defined for '
-                                'vectors that are entirely false.')
+                             'vectors that are entirely false.')
         return float(2.0 * (ntf + nft)) / denom
 
-
     def pwdist_jaccard(self, seq1idx, seq2idx):
-        """Compute the Jaccard-Needham dissimilarity 
+        """Compute the Jaccard-Needham dissimilarity
         between two boolean 1-D arrays.
 
         Returns:
@@ -169,10 +166,9 @@ class Distance(distance.Distance):
         u = self[seq1idx]
         v = self[seq2idx]
         dist = (np.double(np.bitwise_and((u != v),
-                                         np.bitwise_or(u != 0, v != 0)).sum())
-                / np.double(np.bitwise_or(u != 0, v != 0).sum()))
+                np.bitwise_or(u != 0, v != 0)).sum()) /
+                np.double(np.bitwise_or(u != 0, v != 0).sum()))
         return dist
-
 
     def pwdist_hamming(self, seq1idx, seq2idx):
         """Compute the Hamming distance between two 1-D arrays.
@@ -188,10 +184,9 @@ class Distance(distance.Distance):
         v = self[seq2idx]
         return (u != v).mean()
 
-
     def pwdist_kulsinski(self, seq1idx, seq2idx):
         """Compute the Kulsinski dissimilarity between two boolean 1-D arrays.
-        
+
         Returns:
             distance value (double)
 
@@ -201,7 +196,6 @@ class Distance(distance.Distance):
         n = float(len(u))
         (nff, nft, ntf, ntt) = _nbool_correspond_all(u, v)
         return (ntf + nft - ntt + n) / (ntf + nft + n)
-
 
 
 def main():
@@ -221,6 +215,6 @@ def main():
     matrix = distmatrix.create(seq_records.id_list, dist)
     matrix.display()
 
-    
+
 if __name__ == '__main__':
     main()

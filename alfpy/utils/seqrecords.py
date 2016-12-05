@@ -1,5 +1,6 @@
 from . import fasta
 
+
 class SeqRecords:
     """Object representing an ordered collection of sequence records.
 
@@ -19,7 +20,7 @@ class SeqRecords:
             >>> print seq_records
             SeqRecords (noseqs: 2)
         """
-        self.count = 0 if not id_list else len(seq_list) 
+        self.count = 0 if not id_list else len(seq_list)
         self.id_list = id_list if id_list else []
         self.seq_list = seq_list if seq_list else []
 
@@ -28,7 +29,7 @@ class SeqRecords:
 
         Args:
             id (str)  : sequence identifier
-            seq (str) : sequence string 
+            seq (str) : sequence string
 
         Example:
             >>> seq_record.add("seq3", "TGCTGA")
@@ -60,11 +61,11 @@ class SeqRecords:
     def length_list(self):
         """Return a list of the sequences' length_list"""
         return [len(seq) for seq in self.seq_list]
-    
+
     def __iter__(self):
         """
         Iterate over sequence records in the collection.
-        
+
         Example:
             >>> for amino_acid in record:
             ...     print(amino_acid)
@@ -84,13 +85,13 @@ class SeqRecords:
 
         Example:
             >>> len(seq_records)
-            3        
+            3    
         """
         return len(self.seq_list)
 
     def __repr__(self):
         return "{0} (noseqs: {1})".format(self.__class__.__name__,
-                                           self.count)
+                                          self.count)
 
 
 def read_fasta(handle):
@@ -110,7 +111,8 @@ def read_fasta(handle):
 
 def main():
     seq_records = SeqRecords()
-    seq_records.add('seq1', 'AACGTACCATTGAACGTACCATTGAACGTACCATTGATGCATGGTAGAT')
+    seq_records.add(
+        'seq1', 'AACGTACCATTGAACGTACCATTGAACGTACCATTGATGCATGGTAGAT')
     seq_records.add('seq2', 'CTAGGGGACTTATCTAGGGGACTTATCTAGGGGACTTAT')
     seq_records.add('seq3', 'CTAGGGAAAATTCTAGGGAAAATTCTAGGGAAAATT')
 
@@ -127,7 +129,6 @@ def main():
     os.remove(outfilename)
 
     return seq_records
-
 
 
 if __name__ == '__main__':

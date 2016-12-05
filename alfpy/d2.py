@@ -13,7 +13,6 @@ import math
 import numpy as np
 
 
-
 class Distance:
 
     """Combine a list of vectors with distance function."""
@@ -33,7 +32,6 @@ class Distance:
         return math.sqrt(self.pwdist_d2(seqidx1, seqidx2))
 
 
-
 def main():
     from .utils.seqrecords import main
     from .utils.data import seqcontent
@@ -47,7 +45,7 @@ def main():
     seq_records = main()
 
     patterns = []
-    for i in range(L,U+1):
+    for i in range(L, U+1):
         p = word_pattern.create(seq_records.seq_list, i)
         patterns.append(p)
 
@@ -65,6 +63,7 @@ def main():
     dist = Distance(countsweight)
     matrix = distmatrix.create(seq_records.id_list, dist)
     matrix.display()
+
 
 if __name__ == '__main__':
     main()

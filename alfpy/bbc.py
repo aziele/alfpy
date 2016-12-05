@@ -2,7 +2,7 @@
 sequence feature, named Base-Base Correlation (BBC).
 
 References:
-    1. Liu, Zhi-Hua, et al. (2007) Bioinformatics and Biomedical Engineering, 
+    1. Liu, Zhi-Hua, et al. (2007) Bioinformatics and Biomedical Engineering,
        ICBBE. The 1st International Conference on. IEEE, 2007.
        doi: 10.1109/ICBBE.2007.98
 
@@ -20,7 +20,6 @@ import numpy as np
 from .utils import distance
 
 
-
 def base_base_correlation(seq, k, alphabet):
     """Compute the base base correlation (BBC) vector for a sequence.
 
@@ -28,19 +27,19 @@ def base_base_correlation(seq, k, alphabet):
         seq (str) : sequence
         k (int)   : parameter of the BBC. Intuitively, it represents
                     the maximum distance to observe correlation between bases.
-        alphabet (str/list) : List of possible characters. This can be used to 
-                    avoid autodetection of the alphabet in the case where 
+        alphabet (str/list) : List of possible characters. This can be used to
+                    avoid autodetection of the alphabet in the case where
                     sequences with missing letters are to be compared.
-   
+
     Returns:
         numpy.ndarray
 
     Examples:
         >>> print(base_base_correlation('ATGCATGC', 1, 'ATGC'))
         [[
-         -0.12547302 -0.12547302  0.2281059   0.17169665  0.01815213 
-         -0.12547302 -0.12547302  0.04258163  0.04258163  0.17169665 
-         -0.12547302 -0.12547302 -0.12547302  0.2281059   0.17169665 
+         -0.12547302 -0.12547302  0.2281059   0.17169665  0.01815213
+         -0.12547302 -0.12547302  0.04258163  0.04258163  0.17169665
+         -0.12547302 -0.12547302 -0.12547302  0.2281059   0.17169665
          -0.12547302
         ]]
 
@@ -95,7 +94,6 @@ def base_base_correlation(seq, k, alphabet):
     # Flatten the bbc into a 16 feature vector.
     bbc.shape = (1, L * L)
     return bbc
-
 
 
 def create_vectors(seq_records, k=10, alphabet="ATGC"):

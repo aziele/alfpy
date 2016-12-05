@@ -1,57 +1,55 @@
 import argparse
 import sys
-from alfpy import word_vector
-from alfpy import word_distance
+
 from alfpy import rtd
+from alfpy import word_distance
+from alfpy import word_pattern
+from alfpy import word_vector
 from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
-from alfpy import word_pattern
 
 
 def get_parser():
     parser = argparse.ArgumentParser(
-        description='''Calculate distances between protein/DNA sequences based 
-        on Return Time Distribution (RTD) of words\' occurrences and their 
-        relative orders''',
-        add_help=False,
-
+        description='''Calculate distances between protein/DNA sequences based
+        on Return Time Distribution (RTD) of words\' occurrences and their
+        relative orders''', add_help=False,
     )
     group = parser.add_argument_group('REQUIRED ARGUMENTS')
     group.add_argument('--fasta', '-f',
-                       help='input FASTA sequence filename', required=True, 
+                       help='input FASTA sequence filename', required=True,
                        type=argparse.FileType('r'), metavar="FILE")
 
     group = parser.add_argument_group('  Choose between the two options')
     g1 = group.add_mutually_exclusive_group()
     g1.add_argument('--word_size', '-s', metavar="N",
-                       help='word size for creating word patterns', 
-                       type=int)    
+                    help='word size for creating word patterns',
+                    type=int)
     g1.add_argument('--word_pattern', '-w',
-                       help='input filename w/ pre-computed word patterns', 
-                       type=argparse.FileType('r'), metavar="FILE")
-
+                    help='input filename w/ pre-computed word patterns',
+                    type=argparse.FileType('r'), metavar="FILE")
 
     group = parser.add_argument_group('OPTIONAL ARGUMENTS')
     distlist = word_distance.Distance.get_disttypes()
     group.add_argument('--distance', '-d', choices=distlist,
-                        help= 'choose from: {} [DEFAULT: %(default)s]'.format(
-                            ", ".join(distlist)), 
-                        metavar='', default="google")               
+                       help='choose from: {} [DEFAULT: %(default)s]'.format(
+                           ", ".join(distlist)),
+                       metavar='', default="google")
 
-    group = parser.add_argument_group('OUTPUT ARGUMENTS')   
+    group = parser.add_argument_group('OUTPUT ARGUMENTS')
     group.add_argument('--out', '-o', help="output filename",
-                        metavar="FILE")
+                       metavar="FILE")
     group.add_argument('--outfmt', choices=['phylip', 'pairwise'],
-                       default='phylip', 
+                       default='phylip',
                        help='distances output format [DEFAULT: %(default)s]')
 
     group = parser.add_argument_group("OTHER OPTIONS")
-    group.add_argument("-h", "--help", action="help", 
+    group.add_argument("-h", "--help", action="help",
                        help="show this help message and exit")
 
-    if len(sys.argv[1:])==0:
+    if len(sys.argv[1:]) == 0:
         # parser.print_help()
-        parser.print_usage() # for just the usage line
+        parser.print_usage()
         parser.exit()
 
     return parser
@@ -66,10 +64,11 @@ def validate_args(parser):
         p = word_pattern.read(args.word_pattern)
         if not p.pos_list:
             e = "{0} does not contain info on word positions.\n"
-            e += 'Please use: create_wordpattern.py with --word_position option.'
+            e += "Please use: create_wordpattern.py with"
+            e += " --word_position option."
             parser.error(e.format(args.word_pattern.name))
         else:
-            args.word_pattern = p        
+            args.word_pattern = p
     else:
         parser.error("Specify either: --word_size or --word_pattern.")
     '''
@@ -91,10 +90,10 @@ def main():
         p = word_pattern.create(seq_records.seq_list, args.word_size, True)
     else:
         p = args.word_pattern
-    
-    vector =  rtd.create_vector(seq_records.count, p)
+
+    vector = rtd.create_vector(seq_records.count, p)
     dist = rtd.Distance(vector, args.distance)
-    
+
     matrix = distmatrix.create(seq_records.id_list, dist)
 
     if args.out:

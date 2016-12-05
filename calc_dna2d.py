@@ -1,5 +1,6 @@
 import argparse
 import sys
+
 from alfpy import graph2Ddna
 from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
@@ -7,38 +8,37 @@ from alfpy.utils import seqrecords
 
 def get_parser():
     parser = argparse.ArgumentParser(
-        description='''Calculate distance between DNA sequences based 
-        on the two-dimensional (2D) graphical DNA curve''',
+        description='''Calculate distance between DNA sequences based on
+         the two-dimensional (2D) graphical DNA curve''',
         add_help=False,
     )
     group = parser.add_argument_group('REQUIRED ARGUMENTS')
     group.add_argument('--fasta', '-f',
-                       help='input FASTA sequence filename', required=True, 
+                       help='input FASTA sequence filename', required=True,
                        type=argparse.FileType('r'), metavar="FILE")
- 
+
     group = parser.add_argument_group('OPTIONAL ARGUMENTS')
     group.add_argument('--vector', '-v', choices=['2DSV', '2DNV', '2DMV'],
-                        help='vector type [default: %(default)s]',
-                        default='2DNV')   
+                       help='vector type [default: %(default)s]',
+                       default='2DNV')
     group.add_argument('--ndim', '-n', type=int, metavar='N',
-                        help='''number of dimensions representing a sequence. 
-                        (required when --vector 2DMV) [default: %(default)s]''',
-                        default=10) 
+                       help='''number of dimensions representing a sequence.
+                        (required if --vector 2DMV) [default: %(default)s]''',
+                       default=10)
 
-    group = parser.add_argument_group('OUTPUT ARGUMENTS')   
-    group.add_argument('--out', '-o', help="output filename",
-                        metavar="FILE")
+    group = parser.add_argument_group('OUTPUT ARGUMENTS')
+    group.add_argument('--out', '-o', help="output filename", metavar="FILE")
     group.add_argument('--outfmt', choices=['phylip', 'pairwise'],
-                       default='phylip', 
+                       default='phylip',
                        help='distances output format [default: %(default)s]')
 
     group = parser.add_argument_group("OTHER OPTIONS")
-    group.add_argument("-h", "--help", action="help", 
+    group.add_argument("-h", "--help", action="help",
                        help="show this help message and exit")
 
-    if len(sys.argv[1:])==0:
+    if len(sys.argv[1:]) == 0:
         # parser.print_help()
-        parser.print_usage() # for just the usage line
+        parser.print_usage()
         parser.exit()
     return parser
 
@@ -48,7 +48,7 @@ def validate_args(parser):
     if args.vector == '2DMV' and args.ndim is None:
         parser.error("--vector 2DMV requires the --ndim")
     # TODO: mk as a range
-    # http://stackoverflow.com/questions/18700634/python-argparse-integer-condition-12
+    # stackoverflow.com/questions/18700634/python-argparse-integer-condition-12
     return args
 
 

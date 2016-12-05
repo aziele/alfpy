@@ -1,43 +1,43 @@
 import argparse
 import sys
-from alfpy.utils.data import subsmat
+
 from alfpy import wmetric
 from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
+from alfpy.utils.data import subsmat
 
 
 def get_parser():
     parser = argparse.ArgumentParser(
-        description='''Calculate distances between protein sequences based 
-        on W-metric (Wm).''',
-        add_help=False,
+        description='''Calculate distances between protein sequences based
+        on W-metric (Wm).''', add_help=False,
     )
     group = parser.add_argument_group('REQUIRED ARGUMENTS')
     group.add_argument('--fasta', '-f',
-                       help='input FASTA sequence filename', required=True, 
+                       help='input FASTA sequence filename', required=True,
                        type=argparse.FileType('r'), metavar="FILE")
 
     l = subsmat.list_subsmats()
     group = parser.add_argument_group('OPTIONAL ARGUMENTS')
     group.add_argument('--matrix', '-m', choices=l,
-                        help= 'choose from: {} [DEFAULT: %(default)s]'.format(
-                            ", ".join(l)), metavar='',
-                        default="blosum62") 
+                       help='choose from: {} [DEFAULT: %(default)s]'.format(
+                           ", ".join(l)), metavar='',
+                       default="blosum62")
 
-    group = parser.add_argument_group('OUTPUT ARGUMENTS')   
+    group = parser.add_argument_group('OUTPUT ARGUMENTS')
     group.add_argument('--out', '-o', help="output filename",
-                        metavar="FILE")
+                       metavar="FILE")
     group.add_argument('--outfmt', choices=['phylip', 'pairwise'],
-                       default='phylip', 
+                       default='phylip',
                        help='distances output format [DEFAULT: %(default)s]')
 
     group = parser.add_argument_group("OTHER OPTIONS")
-    group.add_argument("-h", "--help", action="help", 
+    group.add_argument("-h", "--help", action="help",
                        help="show this help message and exit")
 
-    if len(sys.argv[1:])==0:
+    if len(sys.argv[1:]) == 0:
         # parser.print_help()
-        parser.print_usage() # for just the usage line
+        parser.print_usage()
         parser.exit()
 
     return parser

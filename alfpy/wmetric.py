@@ -5,8 +5,8 @@ Reference:
        doi: 10.1093/bioinformatics/btg392
 
 W-metric includes one-tuple composition information (the difference
-in amino acid frequencies between two proteins) and weights from 
-the scoring matrices used in alignment methods. 
+in amino acid frequencies between two proteins) and weights from
+the scoring matrices used in alignment methods.
 
 """
 import itertools
@@ -37,7 +37,7 @@ def count_seq_chars(seq, alphabet):
 
 
 def freq_seq_chars(counts):
-    """Calculate frequencies of characters (symbols) in a sequence based on 
+    """Calculate frequencies of characters (symbols) in a sequence based on
     characters' counts.
 
     Args:
@@ -50,25 +50,24 @@ def freq_seq_chars(counts):
     Examples:
         >>> l = [0, 0, 0, 0, 1, 2, 1, 0, 1, 0, 1, 0, 0, 0, 0, 2, 1, 0, 1, 0]
         >>> print(freq_seq_chars(l))
-        [0.0, 0.0, 0.0, 0.0, 0.1, 0.2, 0.1, 
-         0.0, 0.1, 0.0, 0.1, 0.0, 0.0, 0.0, 
+        [0.0, 0.0, 0.0, 0.0, 0.1, 0.2, 0.1,
+         0.0, 0.1, 0.0, 0.1, 0.0, 0.0, 0.0,
          0.0, 0.2, 0.1, 0.0, 0.1, 0.0]
 
     """
     seqlen = float(sum(counts))
-    return [c/seqlen for c in counts]
-
+    return [c / seqlen for c in counts]
 
 
 def freq_seqs_chars(seq_records, alphabet):
     """Calculate frequencies of characters from given alphabet
     for multiple sequences (stored as seq_records object).
-   
+
     Args:
        seq_records (obj): instance of SeqRecords()
        alphabet (list): list of allowed characters
 
-    Returns: 
+    Returns:
        numpy.ndarray
     """
     l = []
@@ -78,7 +77,6 @@ def freq_seqs_chars(seq_records, alphabet):
         freq = freq_seq_chars(counts)
         l.append(freq)
     return np.array(l)
-
 
 
 class Distance:
@@ -104,7 +102,7 @@ class Distance:
             >>> seq_records = SeqRecords()
             >>> seq_records.add('seq1', 'MKSTGWHF')
             >>> seq_records.add('seq2', 'MKSSSSTGWGWG')
-            >>> seq_records.add('seq3', 'MKSTLKNGTEQ')  
+            >>> seq_records.add('seq3', 'MKSTLKNGTEQ')
 
             >>> dist = Distance(seq_records, matrix)
 
@@ -113,9 +111,8 @@ class Distance:
         self.freqs = freq_seqs_chars(seq_records, matrix.alphabet_list)
         self.matrix = matrix
 
-
     def pairwise_distance(self, seqnum1, seqnum2):
-        """Compute W-metric between two proteins. 
+        """Compute W-metric between two proteins.
 
         The distance is defined by one-tuple frequencies
         fx and fy of two proteins, weighted by matrix W.
@@ -128,10 +125,9 @@ class Distance:
         weights = self.matrix.data
         freqs1 = self.freqs[seqnum1]
         freqs2 = self.freqs[seqnum2]
-        f = freqs1-freqs2
-        m = np.outer(f,f)*self.matrix.data
+        f = freqs1 - freqs2
+        m = np.outer(f, f) * self.matrix.data
         return np.sum(m)
-
 
 
 def main():
@@ -144,11 +140,11 @@ def main():
     seq_records = SeqRecords()
     seq_records.add('seq1', 'MKSTGWHF')
     seq_records.add('seq2', 'MKSSSSTGWGWG')
-    seq_records.add('seq3', 'MKSTLKNGTEQ')  
+    seq_records.add('seq3', 'MKSTLKNGTEQ')
 
     dist = Distance(seq_records, matrix)
 
-    #print dist.pairwise_distance(0, 1)
+    # print dist.pairwise_distance(0, 1)
     matrix = distmatrix.create(seq_records.id_list, dist)
     matrix.display()
 

@@ -104,14 +104,18 @@ REDUCED_ALPHABET = {
     }
 }
 
+
 def get_alphabet(mol):
     return ALPHABET[mol]
+
 
 def get_freqs(mol):
     return FREQS[mol]
 
+
 def get_weights(mol):
     return WEIGHTS[mol]
+
 
 def get_reduced_alphabet(mol):
     return REDUCED_ALPHABET[mol]

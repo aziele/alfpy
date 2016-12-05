@@ -1,11 +1,11 @@
 """Normalized compression distance (NCD)
 
-The NCD is a family of distances parametrized with the compressor Z. 
-The better Z is, the closer the NCD approaches the NID, and the better 
+The NCD is a family of distances parametrized with the compressor Z.
+The better Z is, the closer the NCD approaches the NID, and the better
 the results are.
 
-As described in: 
-1. Bennett, Gacs, Ming, Vintanyi, Zurek 
+As described in:
+1. Bennett, Gacs, Ming, Vintanyi, Zurek
    IEEE Transactions on Information Theory 1998. 44(4):1407-1423
    doi: 10.1109/18.681318
 
@@ -22,7 +22,7 @@ import zlib
 
 def complexity(s):
     """Compress string and return the size of the compression."""
-    s = s.encode("utf-8") # Python 3 fix.
+    s = s.encode("utf-8")  # Python 3 fix.
     compr = zlib.compress(s)
     c = float(len(compr))
     return c
@@ -53,21 +53,19 @@ class Distance():
         return d
 
     def pairwise_distance(self, seq1idx, seq2idx):
-        """Compute NCD between two sequences. 
+        """Compute NCD between two sequences.
 
         Formula:
         NCD_Z(x,y) = \frac{Z(xy) - \min \{Z(x),Z(y)\}}{\max \{Z(x),Z(y)\}}.
 
-        where: 
-        Z(x) is the binary length of the sequence `x` compressed 
+        where:
+        Z(x) is the binary length of the sequence `x` compressed
         with compressor Z
-        """ 
+        """
         zx = self._complexity[(seq1idx,)]
         zy = self._complexity[(seq2idx,)]
-        zxy = self._complexity[(seq1idx,seq2idx)]
-        return (zxy-min([zx,zy]))/max([zx, zy])
-
-
+        zxy = self._complexity[(seq1idx, seq2idx)]
+        return (zxy - min([zx, zy])) / max([zx, zy])
 
 
 if __name__ == '__main__':

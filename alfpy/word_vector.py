@@ -1,7 +1,7 @@
 '''Create vectors of word occurrences (e.g. counts, frequencies, standarized
 frequncies, weighted counts/frequencies) for sequences.
 
-The following code is inspired by, and was created based on, an excellent 
+The following code is inspired by, and was created based on, an excellent
 Python code `decaf+py` (http://bioinformatics.org.au/tools/decaf+py/)
 originally published in:
     1. Hohl and Ragan. (2007) Systematic Biology. 56. 2007. p. 206-221
@@ -16,7 +16,7 @@ import numpy as np
 
 
 class Counts:
-    """Store counts of words (as word_pattern.Pattern object) in given sequence 
+    """Store counts of words (as word_pattern.Pattern object) in given sequence
     records (as seqrecords.SeqRecords object).
 
     Attributes:
@@ -38,8 +38,7 @@ class Counts:
         self.seq_lengths = seq_lengths
         self.pat_list = patterns.pat_list
         self.patlen = len(patterns.pat_list[0])
-        self.data = self._get_counts_occurrence(len(seq_lengths),patterns)
-
+        self.data = self._get_counts_occurrence(len(seq_lengths), patterns)
 
     @staticmethod
     def _get_counts_occurrence(seq_count, patterns):
@@ -50,14 +49,13 @@ class Counts:
             pattern (obj: word_pattern.Pattern)
 
         """
-        data = np.empty((seq_count,patterns.count))
+        data = np.empty((seq_count, patterns.count))
         for seqidx in range(seq_count):
             for patidx in range(patterns.count):
                 occr_dict = patterns.occr_list[patidx]
-                count = occr_dict.get(seqidx, 0) 
-                data[seqidx,patidx] = count
+                count = occr_dict.get(seqidx, 0)
+                data[seqidx, patidx] = count
         return data
-
 
     def __getitem__(self, seqidx):
         """Return word counts for given sequence based on its index
@@ -67,7 +65,6 @@ class Counts:
 
         """
         return self.data[seqidx]
-
 
     def __str__(self):
         """Return the matrix of counts as a string."""
@@ -82,7 +79,7 @@ class Bools(Counts):
 
     def __init__(self, seq_lengths, patterns):
         Counts.__init__(self, seq_lengths, patterns)
-        self.data = self.data.astype(bool) # ndarray of bools.
+        self.data = self.data.astype(bool)  # ndarray of bools.
 
 
 class Freqs(Counts):
@@ -90,7 +87,7 @@ class Freqs(Counts):
 
     def __init__(self, seq_lengths, patterns):
         Counts.__init__(self, seq_lengths, patterns)
-        self.data = self.__relative_freqs() # Calculate freqs from counts.
+        self.data = self.__relative_freqs()  # Calculate freqs from counts.
 
     def __relative_freqs(self):
         """Calculates word frequencies."""
@@ -98,7 +95,7 @@ class Freqs(Counts):
             seqlen = self.seq_lengths[seqidx]
             counts = self.data[seqidx]
             total = seqlen - self.patlen + 1
-            self.data[seqidx] = counts/total
+            self.data[seqidx] = counts / total
         return self.data
 
 
@@ -114,6 +111,7 @@ class FreqsStd(Freqs):
            doi: 10.2307/2533509
 
     """
+
     def __init__(self, seq_lengths, patterns, freqmodel):
         # Standardization takes care of variance of occurrences
         Freqs.__init__(self, seq_lengths, patterns)
@@ -136,7 +134,7 @@ class FreqsStd(Freqs):
                 freq = freqs[pidx]
                 overlap = overlaps[pidx]
                 var = freqmodel.var(pat, seqlen, self.patlen, overlap)
-                self.data[seqidx, pidx] = freq/math.sqrt(var)
+                self.data[seqidx, pidx] = freq / math.sqrt(var)
         return self.data
 
 
@@ -153,7 +151,6 @@ class WeightModel:
             msg = 'unknown weight model "%s"' % wtype
             raise ValueError(msg)
 
-
     def content(self, vector, patterns):
         l = []
         for pat in patterns.pat_list:
@@ -162,8 +159,7 @@ class WeightModel:
                 value *= self.char_weights.get(symbol, 1.0)
             l.append(value)
         l = np.array(l)
-        return vector*l
-
+        return vector * l
 
 
 class CountsWeight(Counts):
@@ -180,12 +176,10 @@ class FreqsWeight(Freqs):
     def __init__(self, seq_lengths, patterns, weightmodel):
         Freqs.__init__(self, seq_lengths, patterns)
         self.data = weightmodel.compute(self.data, patterns)
-     
-
 
 
 class WordModel:
-    """Variance of frequencies of words (k-mers) based on their overlap 
+    """Variance of frequencies of words (k-mers) based on their overlap
     capabilities.
 
     References:
@@ -211,21 +205,21 @@ class WordModel:
 
         Overlap capability indicates to what extent the prefix and suffix
         of a word are equal (i.e. if the word beginning is the same as the
-        ending). 
+        ending).
 
         In other words, it indicates periodicity in the word, which leads
         to higher probability of co-occurence of words sharing the repeated
-        motifs. 
+        motifs.
 
         For example, the word AAAA can occur between 0 and 17 times within
-        a sequence of length 20. The word ACAC cannot occur more than 9 
+        a sequence of length 20. The word ACAC cannot occur more than 9
         tiummes within a sequence of length 20 because it has less overlap
         capability. The word ACGT jas no overlap capability.
 
         Args:
             word (str): k-mer to get the overlap capability
         Returns:
-            A list of binary values. For example, the word ACAC gives overlap 
+            A list of binary values. For example, the word ACAC gives overlap
             capability of [0,1,0,1] and the word AAAC has overlap capability
             [0,0,0,1]
 
@@ -233,7 +227,7 @@ class WordModel:
         value = []
         length = len(word)
         for i in range(1, length):
-            v = 1 if word[0:i] == word[length-i:length] else 0
+            v = 1 if word[0:i] == word[length - i:length] else 0
             value.append(v)
         # i == len(word) - overlap capability is 1 (word overlaps itself)
         value.append(1)
@@ -281,7 +275,6 @@ class WordModel:
         if word_probs is None:
             word_probs = self.probabilities(word)
 
-
         # p = P_L == last element
         p = word_probs[-1]
 
@@ -295,17 +288,17 @@ class WordModel:
         # should be: word_probs[k] == P_k
         #       but: word_probs starts at 0, P_k at 1
 
-        sum_term = [(max_num-k) * overlap_capability[word_len-k-1]
-                    * word_probs[k-1]
-                    for k in range(1, min_term)]
+        sum_term = [(max_num - k) * overlap_capability[word_len - k - 1] *
+                    word_probs[k - 1] for k in range(1, min_term)]
         np = max_num * p
         n_L = max_num - word_len
-        value = np*(1-np) + pow(p, 2)*(n_L)*(n_L+1) + 2*p*sum(sum_term)
+        value = np * (1 - np) + pow(p, 2) * (n_L) * \
+            (n_L + 1) + 2 * p * sum(sum_term)
         return value
 
 
 class EqualFreqs(WordModel):
-    """Standarized word fequencies with word model that assumes equal 
+    """Standarized word fequencies with word model that assumes equal
     frequencies for all sequence characters (symbols).
 
     References:
@@ -326,7 +319,6 @@ class EqualFreqs(WordModel):
         # assumption of equal frequencies
         self._avg_symbol_frequency = 1.0 / self.alphabet_size
 
-
     def probabilities(self, word):
         result = []
         value = 1.0
@@ -338,7 +330,7 @@ class EqualFreqs(WordModel):
 
 
 class EquilibriumFreqs(WordModel):
-    """Standarized word fequencies with word model that assumes different 
+    """Standarized word fequencies with word model that assumes different
     frequencies (in equilibrium) for all sequence characters (symbols).
 
     References:
@@ -355,7 +347,6 @@ class EquilibriumFreqs(WordModel):
         """
         self._equilibrium_frequencies = equilibrium_frequencies
 
-
     def probabilities(self, word):
         result = []
         value = 1.0
@@ -363,8 +354,6 @@ class EquilibriumFreqs(WordModel):
             value *= self._equilibrium_frequencies.get(symbol, 0.0)
             result.append(value)
         return result
-
-
 
 
 class Composition(Counts):
@@ -398,8 +387,6 @@ class Composition(Counts):
             seqlen = self.seq_lengths[seqnum]
             self.__composition(seqnum, seqlen)
 
-
-
     def __check_patlen(self):
 
         if self.patlen != self._counts1.patlen + 1 or \
@@ -408,7 +395,6 @@ class Composition(Counts):
             msg = 'pattern lengths do not follow n, n-1, n-2'
 
             raise ValueError(msg)
-
 
     def __markov_chain_freqs(self, seqnum, seqlen, patnum, patlen, pattern):
         len1 = seqlen - patlen + 1
@@ -427,13 +413,12 @@ class Composition(Counts):
         fR = self._counts1[seqnum][patnumR]
         fLR = self._counts2[seqnum][patnumLR]
 
-        if fLR!=0:
-            f0 = float(fL)*fR/fLR * (float(len1)*len3/pow(len2, 2))
+        if fLR != 0:
+            f0 = float(fL) * fR / fLR * (float(len1) * len3 / pow(len2, 2))
         else:
             f0 = 0.0
 
         return f, f0
-
 
     def __composition(self, seqnum, seqlen):
         compos = []
@@ -443,11 +428,11 @@ class Composition(Counts):
 
                 f, f0 = self.__markov_chain_freqs(seqnum, seqlen, patnum,
                                                   patlen, pattern)
-                if np.isnan(f0) or f0==0:
+                if np.isnan(f0) or f0 == 0:
                     value = 0.0
                 else:
                     value = (f - f0) / f0
-                
+
             except ZeroDivisionError:
                 value = 0.0
             compos.append(value)
@@ -459,7 +444,7 @@ def _read_charval_file(handle):
 
     Args:
         handle (file/list): input file
-    
+
     Returns:
         dict : e.g. {'A': 0.0826, 'Q': 0.0393}
 
@@ -490,7 +475,6 @@ read_weightfile = _read_charval_file
 read_freqfile = _read_charval_file
 
 
-
 def main():
     from . import word_pattern
     from .utils.seqrecords import main
@@ -513,13 +497,13 @@ def main():
     countw = CountsWeight(seq_records.length_list, p, weightmodel)
     freqw = FreqsWeight(seq_records.length_list, p, weightmodel)
 
-
     patternsk = word_pattern.create(seq_records.seq_list, 3)
     patternsk1 = word_pattern.create(seq_records.seq_list, 2)
-    patternsk2 = word_pattern.create(seq_records.seq_list, 1) 
-    compos = Composition(seq_records.length_list, patternsk, patternsk1, patternsk2)
+    patternsk2 = word_pattern.create(seq_records.seq_list, 1)
+    compos = Composition(seq_records.length_list,
+                         patternsk, patternsk1, patternsk2)
     return count, freq, freqs_std1, freqs_std2, countw, freqw, compos
-    
- 
+
+
 if __name__ == '__main__':
     main()

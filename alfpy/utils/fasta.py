@@ -17,7 +17,7 @@ class FastaRecord():
 
         Example:
             >>> import Fasta
-            >>> record = FastaRecord(seq='MRELEAKAT', 
+            >>> record = FastaRecord(seq='MRELEAKAT',
             ...                      id='NP_055309.2',
             ...                      description='TNRC6A')
             >>> print(record)
@@ -30,7 +30,7 @@ class FastaRecord():
 
     def __iter__(self):
         """Iterate over the letters in the sequence.
-        
+
         Example:
             >>> import Fasta
             >>> record = Fasta.read(open('sequence.fasta'))
@@ -69,7 +69,7 @@ class FastaRecord():
 
         Example:
             >>> import Fasta
-            >>> record = FastaRecord(seq='MRELEAKAT', 
+            >>> record = FastaRecord(seq='MRELEAKAT',
             ...                      id='NP_055309.2',
             ...                      description='TNRC6A')
             >>> print(record)
@@ -77,7 +77,7 @@ class FastaRecord():
             MRELEAKAT
         """
         return self.format(wrap=70)
-   
+
     def __len__(self):
         """Return the length of the sequence.
 
@@ -85,7 +85,7 @@ class FastaRecord():
             >>> import Fasta
             >>> record = Fasta.read(open('sequence.fasta'))
             >>> len(record)
-            1240        
+            1240
         """
         return len(self.seq)
 
@@ -94,7 +94,7 @@ class FastaRecord():
 
         Example:
             >>> import Fasta
-            >>> record = SeqRecord(seq='MRELEAKAT', 
+            >>> record = SeqRecord(seq='MRELEAKAT',
                                    id='NP_055309.2',
                                    description='TNRC6A')
             >>> print(record.format())
@@ -102,19 +102,20 @@ class FastaRecord():
             MRELEAKAT
         """
         header = ">{0}".format(self.id)
-        if self.description: header+= " "+self.description
-        header += "\n" 
+        if self.description:
+            header += " " + self.description
+        header += "\n"
         if wrap:
             wseq = []
             for i in range(0, len(self.seq), wrap):
-                wseq.append(self.seq[i:i+wrap])
-        return header+"\n".join(wseq)
+                wseq.append(self.seq[i:i + wrap])
+        return header + "\n".join(wseq)
 
 
 def parse(handle):
     """
     Generator function to iterate over Fasta records (as FastaRecord objects).
-    
+
     handle - input file containing fasta sequences.
     """
     faiter = (x[1] for x in groupby(handle, lambda l: l[0] == ">"))
@@ -175,7 +176,7 @@ def to_dict(sequences):
     2
 
     NOTE:
-    This approach is not suitable for very large sets of sequences, 
+    This approach is not suitable for very large sets of sequences,
     as all the SeqRecord objects are held in memory.
     """
     d = dict()
@@ -187,9 +188,8 @@ def to_dict(sequences):
     return d
 
 
-
 if __name__ == '__main__':
-    seqs = ['>seq1 desc1', 'ATGCTGATGATAGATG', 'ATGTAGA', 
+    seqs = ['>seq1 desc1', 'ATGCTGATGATAGATG', 'ATGTAGA',
             '>seq2 desc2', 'ATGCTGCT']
     for seq_record in parse(seqs):
         print(seq_record)

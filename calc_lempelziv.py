@@ -1,5 +1,6 @@
 import argparse
 import sys
+
 from alfpy import lempelziv
 from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
@@ -7,35 +8,34 @@ from alfpy.utils import seqrecords
 
 def get_parser():
     parser = argparse.ArgumentParser(
-        description='''Calculate distance between DNA/protein sequences based on
-        Lempel-Ziv complexity''',
-        add_help=False,
+        description='''Calculate distance between DNA/protein sequences based
+         on Lempel-Ziv complexity.''', add_help=False,
     )
     group = parser.add_argument_group('REQUIRED ARGUMENTS')
     group.add_argument('--fasta', '-f',
-                       help='input FASTA sequence filename', required=True, 
+                       help='input FASTA sequence filename', required=True,
                        type=argparse.FileType('r'), metavar="FILE")
 
     group = parser.add_argument_group('OPTIONAL ARGUMENTS')
     distlist = ['d', 'd_star', 'd1', 'd1_star', 'd1_star2']
     group.add_argument('--distance', '-d', choices=distlist,
-                        help= 'choose from: {} [DEFAULT: %(default)s]'.format(
-                            ", ".join(distlist)), 
-                        metavar='', default="d1_star2")
+                       help='choose from: {} [DEFAULT: %(default)s]'.format(
+                           ", ".join(distlist)),
+                       metavar='', default="d1_star2")
 
-    group = parser.add_argument_group('OUTPUT ARGUMENTS')   
+    group = parser.add_argument_group('OUTPUT ARGUMENTS')
     group.add_argument('--out', '-o', help="output filename",
-                        metavar="FILE")
+                       metavar="FILE")
     group.add_argument('--outfmt', choices=['phylip', 'pairwise'],
-                       default='phylip', 
+                       default='phylip',
                        help='distances output format [DEFAULT: %(default)s]')
 
     group = parser.add_argument_group("OTHER OPTIONS")
-    group.add_argument("-h", "--help", action="help", 
+    group.add_argument("-h", "--help", action="help",
                        help="show this help message and exit")
-    if len(sys.argv[1:])==0:
+    if len(sys.argv[1:]) == 0:
         # parser.print_help()
-        parser.print_usage() # for just the usage line
+        parser.print_usage()
         parser.exit()
     return parser
 
