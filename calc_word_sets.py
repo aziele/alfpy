@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 
+# Copyright (c) 2016 Zielezinski A, combio.pl
+
 import argparse
 import sys
 from alfpy import word_sets_distance
