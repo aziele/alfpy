@@ -1,9 +1,11 @@
 from setuptools import setup
 
+# Read a __version__
+exec(open('alfpy/version.py').read())
 
 setup(
    name='alfpy',
-   version='1.0.3',
+   version=__version__,
    description="Alignment-free package to compare DNA/RNA/protein sequences (bioinformatics).",
    author='Andrzej Zielezinski',
    keywords='alignment-free bioinformatics sequence DNA protein homology phylogeny',

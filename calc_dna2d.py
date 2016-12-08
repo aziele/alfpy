@@ -8,13 +8,13 @@ import sys
 from alfpy import graph2Ddna
 from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
-
+from alfpy.version import __version__
 
 def get_parser():
     parser = argparse.ArgumentParser(
         description='''Calculate distance between DNA sequences based on
-         the two-dimensional (2D) graphical DNA curve''',
-        add_help=False,
+        the two-dimensional (2D) graphical DNA curve''',
+        add_help=False, prog='calc_dna2d.py'
     )
     group = parser.add_argument_group('REQUIRED ARGUMENTS')
     group.add_argument('--fasta', '-f',
@@ -39,6 +39,8 @@ def get_parser():
     group = parser.add_argument_group("OTHER OPTIONS")
     group.add_argument("-h", "--help", action="help",
                        help="show this help message and exit")
+    group.add_argument('--version', action='version',
+                       version='%(prog)s {}'.format(__version__))
 
     if len(sys.argv[1:]) == 0:
         # parser.print_help()

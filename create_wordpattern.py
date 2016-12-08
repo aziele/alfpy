@@ -6,13 +6,13 @@ import argparse
 import sys
 from alfpy.utils import seqrecords
 from alfpy import word_pattern
-
+from alfpy.version import __version__
 
 def get_parser():
     parser = argparse.ArgumentParser(
         description='''Count subsequences (words) of a given length (size)
         for each sequence in input FASTA-formatted file.''',
-        add_help=False,
+        add_help=False, prog='create_wordpattern.py'
     )
     group = parser.add_argument_group('REQUIRED ARGUMENTS')
     group.add_argument('--fasta', '-f',
@@ -43,6 +43,8 @@ def get_parser():
     group = parser.add_argument_group("OTHER OPTIONS")
     group.add_argument("-h", "--help", action="help",
                        help="show this help message and exit")
+    group.add_argument('--version', action='version',
+                       version='%(prog)s {}'.format(__version__))
 
     if len(sys.argv[1:]) == 0:
         # parser.print_help()
