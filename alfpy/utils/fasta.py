@@ -12,7 +12,7 @@ class FastaRecord():
         description (str) : Sequence description
     """
 
-    def __init__(self, seq, id, description=None):
+    def __init__(self, seq, id, description=False):
         """Create a FastaRecord.
 
         Example:
