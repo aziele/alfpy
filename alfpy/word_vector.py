@@ -73,6 +73,12 @@ class Counts:
             result += '\n' + str(list(data))
         return result
 
+    def format(self):
+        l = []
+        for row in self.data:
+            l.append("\t".join(['{:.3f}'.format(v) for v in row]))
+        return "\n".join(l)
+
 
 class Bools(Counts):
     """Store word occurrences in sequences as Booleans (True / False)."""
