@@ -38,7 +38,7 @@ def get_parser():
     group.add_argument("-h", "--help", action="help",
                        help="show this help message and exit")
     group.add_argument('--version', action='version',
-                       version='%(prog)s {}'.format(__version__)) 
+                       version='%(prog)s {}'.format(__version__))
 
     if len(sys.argv[1:]) == 0:
         # parser.print_help()

@@ -11,6 +11,7 @@ from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
 from alfpy.version import __version__
 
+
 def get_parser():
     parser = argparse.ArgumentParser(
         description='''Calculate distances between DNA sequences based on
@@ -38,7 +39,7 @@ def get_parser():
                        help="show this help message and exit")
     group.add_argument('--version', action='version',
                        version='%(prog)s {}'.format(__version__))
-                           
+
     if len(sys.argv[1:]) == 0:
         # parser.print_help()
         parser.print_usage()

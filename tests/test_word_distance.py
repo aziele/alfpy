@@ -54,7 +54,7 @@ class TestWordDistance(unittest.TestCase):
                 'seq1       0.0000000 7.5498344 5.4772256',
                 'seq2       7.5498344 0.0000000 4.3588989',
                 'seq3       5.4772256 4.3588989 0.0000000\n']
-        self.assertEqual(matrix.format(), "\n".join(data)) 
+        self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_euclid_norm_freqs(self):
         dist = word_distance.Distance(self.freqs, 'euclid_norm')
@@ -64,7 +64,7 @@ class TestWordDistance(unittest.TestCase):
                'seq1       0.0000000 0.3763512 0.2532387',
                'seq2       0.3763512 0.0000000 0.2603008',
                'seq3       0.2532387 0.2603008 0.0000000\n']
-        self.assertEqual(matrix.format(), "\n".join(data)) 
+        self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_angle_cos_diss_freqs(self):
         dist = word_distance.Distance(self.freqs, 'angle_cos_diss')
@@ -74,7 +74,7 @@ class TestWordDistance(unittest.TestCase):
                 'seq1       0.0000000 0.2797355 0.1500672',
                 'seq2       0.2797355 0.0000000 0.1261027',
                 'seq3       0.1500672 0.1261027 0.0000000\n']
-        self.assertEqual(matrix.format(), "\n".join(data)) 
+        self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_angle_cos_evol_freqs(self):
         dist = word_distance.Distance(self.freqs, 'angle_cos_evol')
@@ -84,7 +84,7 @@ class TestWordDistance(unittest.TestCase):
                 'seq1       0.0000000 0.3281368 0.1625980',
                 'seq2       0.3281368 0.0000000 0.1347925',
                 'seq3       0.1625980 0.1347925 0.0000000\n']
-        self.assertEqual(matrix.format(), "\n".join(data)) 
+        self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_diff_abs_add_freqs(self):
         # agrees with decaf+py

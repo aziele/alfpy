@@ -13,6 +13,7 @@ from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
 from alfpy.version import __version__
 
+
 def get_parser():
     parser = argparse.ArgumentParser(
         description='''Calculate distances between protein/DNA sequences based

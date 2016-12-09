@@ -12,6 +12,7 @@ from alfpy.utils import seqrecords
 from alfpy import word_pattern
 from alfpy.version import __version__
 
+
 def get_parser():
     parser = argparse.ArgumentParser(
         description='''Calculate compositional distances between DNA/protein

@@ -12,6 +12,7 @@ from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
 from alfpy.version import __version__
 
+
 def get_parser():
     parser = argparse.ArgumentParser(
         description='''Calculate d2 distance between DNA/protein sequences based
