@@ -96,13 +96,14 @@ class Matrix():
         for i, j in itertools.combinations(range(size), 2):
             yield i, j, self.id_list[i], self.id_list[j], self.data[i][j]
 
-    def writer(self, handle, f):
+    def writer(self, handle, f, decimal_places):
         """Return a distance matrix as a string in `phylip` or `pairwise`
         formats.
 
         Args:
             handle : output file / sys.stdout
             f (str): phylip / pairwise
+            decimal_places (int): round distance value to decimal places
 
         """
         if f == 'phylip':
@@ -111,20 +112,23 @@ class Matrix():
                 # PHYLIP requires that each sequence identifier
                 # is maximum 10 characters long.
                 seqid = self.id_list[i][:10]
-                l = ['%.7f' % line[i] for i in range(0, len(line))]
+                l = ['{0:.{1}f}'.format(line[i], decimal_places)
+                     for i in range(0, len(line))]
                 l.insert(0, '{0: <10}'.format(seqid))
                 handle.write(" ".join(l) + '\n')
         elif f == 'pairwise':
             for i, j, seqid1, seqid2, distval in self:
-                handle.write("{}\t{}\t{}\n".format(seqid1, seqid2, distval))
+                handle.write("{0}\t{1}\t{2:.{3}f}\n".format(seqid1, seqid2, 
+                                                           distval,
+                                                           decimal_places))
 
-    def display(self, f="phylip"):
+    def display(self, f="phylip", decimal_places=7):
         """Write a distance matrix to the screen."""
-        return self.writer(sys.stdout, f)
+        return self.writer(sys.stdout, f, decimal_places)
 
-    def write_to_file(self, handle, f="phylip"):
+    def write_to_file(self, handle, f="phylip", decimal_places=7):
         """Write a distance matrix to a file."""
-        return self.writer(handle, f)
+        return self.writer(handle, f, decimal_places)
 
     def highcharts(self):
         """Return a distance matrix as a list in the Highcharts format."""
@@ -134,11 +138,12 @@ class Matrix():
             data.append([i, j, distval / maxval, distval])
         return data
 
-    def format(self):
+    def format(self, decimal_places=7):
         lines = ["   {0}\n".format(len(self.id_list))]
         for i, line in enumerate(self.data):
             seqid = self.id_list[i][:10]
-            l = ['%.7f' % line[i] for i in range(0, len(line))]
+            l = ['{0:.{1}f}'.format(line[i], decimal_places)
+                     for i in range(0, len(line))]
             l.insert(0, '{0: <10}'.format(seqid))
             lines.append(" ".join(l) + '\n')
         return "".join(lines)

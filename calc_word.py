@@ -95,8 +95,8 @@ def validate_args(parser):
 
     if args.char_weights is not None:
         if args.vector == 'freqs_std':
-            e = '''--char_weights requires a vector of either \'freqs\' or
-             \'counts\''''
+            e = '--char_weights requires a vector of either \'freqs\''
+            e += ' or \'counts\''
             parser.error(e)
         else:
             try:
@@ -116,7 +116,7 @@ def validate_args(parser):
                 freqs = word_vector.read_freqfile(args.char_freqs)
                 args.char_freqs = freqs
             except:
-                e = 'Invalid format for --freqs {0}'.format(
+                e = 'Invalid format for --char_freqs {0}'.format(
                     args.char_freqs.name)
                 parser.error(e)
         elif args.alphabet_size < 2:

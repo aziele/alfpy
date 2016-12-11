@@ -145,5 +145,7 @@ class TestWordDistance(unittest.TestCase):
                 'seq3       0.3809524 0.3949580 0.0000000\n']
         self.assertEqual(matrix.format(), "\n".join(data))
 
+
+
 if __name__ == '__main__':
     unittest.main()

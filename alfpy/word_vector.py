@@ -40,6 +40,7 @@ class Counts:
         self.patlen = len(patterns.pat_list[0])
         self.data = self._get_counts_occurrence(len(seq_lengths), patterns)
 
+
     @staticmethod
     def _get_counts_occurrence(seq_count, patterns):
         """Create a matrix of word counts for sequences.
@@ -67,13 +68,14 @@ class Counts:
         return self.data[seqidx]
 
     def __str__(self):
-        """Return the matrix of counts as a string."""
+        """Return the matrix of counts as a raw string."""
         result = str(self.__class__)
         for data in self.data:
             result += '\n' + str(list(data))
         return result
 
     def format(self):
+        """Return the matrix of counts as a pretty-formated string"""
         l = []
         for row in self.data:
             l.append("\t".join(['{:.3f}'.format(v) for v in row]))
