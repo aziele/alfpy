@@ -5,34 +5,27 @@ from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
 from alfpy.utils.data import subsmat
 
-ID_LIST = ['seq1', 'seq2', 'seq3', 'seq4']
-SEQ_LIST = [
-    'MEVVIRSANFTDNAKIIIVQLNASVEINCTRPNNYTRKGIRIGPGRAVYAAEEIIGDNTLKQVVTKLRE',
-    'MVIRSANFTDNAKIIIVQLNASVEINCTRPNNNTRKGIRIGPGRAVYAAEEIIGDIRRAHCNIS',
-    'MFTDNAKIIIVQLNASVEINCTRPNNNTRKGIHIGPGRAFYATGEIIGDIRQAHCNISGAKW',
-    'MFTDNAKIIIVQLNASVEINCTRPNNNTR'
-]
-
 
 class TestWmetric(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(TestWmetric, self).__init__(*args, **kwargs)
-        self.seq_records = seqrecords.SeqRecords(ID_LIST, SEQ_LIST)
+        fh = open('data/pep.fa')
+        self.seq_records = seqrecords.read_fasta(fh)
+        fh.close()
+        self.alphabet = 'ACDEFGHIKLMNPQRSTVWY'
 
     def test_count_seq_chars(self):
-        alphabet = 'ACDEFGHIKLMNPQRSTVWY'
         seq = 'MKSTGWXXXXXXXOOOOOOOHFSG'
-        l = wmetric.count_seq_chars(seq, alphabet)
+        l = wmetric.count_seq_chars(seq, self.alphabet)
         freq = wmetric.freq_seq_chars(l)
         expfreq = [0.0, 0.0, 0.0, 0.0, 0.1, 0.2, 0.1, 0.0, 0.1, 0.0,
                    0.1, 0.0, 0.0, 0.0, 0.0, 0.2, 0.1, 0.0, 0.1, 0.0]
         self.assertEqual(freq, expfreq)
 
     def test_freq_seq_chars(self):
-        alphabet = 'ACDEFGHIKLMNPQRSTVWY'
         seq = 'MKSTGWXXXXXXXOOOOOOOHFSG'
-        l = wmetric.count_seq_chars(seq, alphabet)
+        l = wmetric.count_seq_chars(seq, self.alphabet)
         expl = [0, 0, 0, 0, 1, 2, 1, 0, 1, 0, 1, 0, 0, 0, 0, 2, 1, 0, 1, 0]
         self.assertEqual(l, expl)
 

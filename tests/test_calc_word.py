@@ -7,84 +7,21 @@ import uuid
 from alfpy import __version__
 
 
-FASTA = """>seq1
-MEVVIRSANFTDNAKIIIVQLNASVEINCTRPNNYTRKGIRIGPGRAVYAAEEIIGDNTLKQVVTKLRE
->seq2
-MVIRSANFTDNAKIIIVQLNASVEINCTRPNNNTRKGIRIGPGRAVYAAEEIIGDIRRAHCNIS
->seq3
-MFTDNAKIIIVQLNASVEINCTRPNNNTRKGIHIGPGRAFYATGEIIGDIRQAHCNISGAKW
->seq4
-MFTDNAKIIIVQLNASVEINCTRPNNNTR"""
-
-CHAR_FREQS = """A   0.0826
-Q   0.0393
-L   0.0965
-S   0.0659
-R   0.0553
-E   0.0674
-K   0.0583
-T   0.0534
-N   0.0406
-G   0.0708
-M   0.0241
-W   0.0109
-D   0.0546
-H   0.0227
-F   0.0386
-Y   0.0292
-C   0.0137
-I   0.0594
-P   0.0471
-V   0.0687
-"""
-
-CHAR_WEIGHTS = """A   1.21065375303
-C   7.29927007299
-E   1.48367952522
-D   1.8315018315
-G   1.41242937853
-F   2.59067357513
-I   1.6835016835
-H   4.40528634361
-K   1.71526586621
-M   4.14937759336
-L   1.03626943005
-N   2.46305418719
-Q   2.54452926209
-P   2.12314225053
-S   1.51745068285
-R   1.80831826401
-T   1.87265917603
-W   9.17431192661
-V   1.45560407569
-Y   3.42465753425
-"""
-
 
 class TestCalcWord(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(TestCalcWord, self).__init__(*args, **kwargs)
-        self.input_filename = '{}'.format(uuid.uuid4().hex)
+        self.input_filename = 'data/pep.fa'
         self.output_filename = '{}.out'.format(self.input_filename)
-        self.char_weights_filename = 'char_weights.txt'
-        self.char_freqs_filename = 'char_freqs.txt'
+        self.char_weights_filename = 'data/char_weights.txt'
+        self.char_freqs_filename = 'data/char_freqs.txt'
 
     def setUp(self):
-        oh = open(self.input_filename, 'w')
-        oh.write(FASTA)
-        oh.close()
-        oh = open(self.char_weights_filename, 'w')
-        oh.write(CHAR_WEIGHTS)
-        oh.close()
-        oh = open(self.char_freqs_filename, 'w')
-        oh.write(CHAR_FREQS)
-        oh.close()
+        pass
 
     def tearDown(self):
-        os.remove(self.input_filename)
-        os.remove(self.char_weights_filename)
-        os.remove(self.char_freqs_filename)
+        pass
 
     def test_script_arguments1(self):
         cmd = ['calc_word.py', '--version']
@@ -303,6 +240,22 @@ class TestCalcWord(unittest.TestCase):
         os.remove(self.output_filename)
         self.assertEqual(md5, '0f1f15adccf53668a1d2ad776e53bf25')
 
+    def test_script_output5(self):
+        cmd = ['calc_word.py', '--fasta', self.input_filename,
+               '--word_size', '2', '--vector', 'freqs', '--distance',
+               'euclid_squared', '--outfmt', 'pairwise',
+               '--out', self.output_filename, '--char_weights',
+               self.char_weights_filename 
+               ]
+        exit_code = subprocess.call(cmd, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE)
+        self.assertEqual(exit_code, 0)
+        fh = open(self.output_filename)
+        result = fh.read()
+        md5 = hashlib.md5(result).hexdigest()
+        fh.close()
+        os.remove(self.output_filename)
+        self.assertEqual(md5, 'ea1f990dbf28f220496f6a95ff91087b')
 
 if __name__ == '__main__':
     unittest.main()

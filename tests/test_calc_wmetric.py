@@ -2,35 +2,16 @@ import hashlib
 import os
 import subprocess
 import unittest
-import uuid
 
 from alfpy import __version__
-
-
-FASTA = """>seq1
-MEVVIRSANFTDNAKIIIVQLNASVEINCTRPNNYTRKGIRIGPGRAVYAAEEIIGDNTLKQVVTKLRE
->seq2
-MVIRSANFTDNAKIIIVQLNASVEINCTRPNNNTRKGIRIGPGRAVYAAEEIIGDIRRAHCNIS
->seq3
-MFTDNAKIIIVQLNASVEINCTRPNNNTRKGIHIGPGRAFYATGEIIGDIRQAHCNISGAKW
->seq4
-MFTDNAKIIIVQLNASVEINCTRPNNNTR"""
 
 
 class TestCalcWmetric(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(TestCalcWmetric, self).__init__(*args, **kwargs)
-        self.input_filename = '{}'.format(uuid.uuid4().hex)
+        self.input_filename = 'data/pep.fa'
         self.output_filename = '{}.out'.format(self.input_filename)
-
-    def setUp(self):
-        oh = open(self.input_filename, 'w')
-        oh.write(FASTA)
-        oh.close()
-
-    def tearDown(self):
-        os.remove(self.input_filename)
 
     def test_script_arguments1(self):
         cmd = ['calc_wmetric.py', '--matrix', 'blosum62']
