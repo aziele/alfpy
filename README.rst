@@ -8,8 +8,14 @@ phylogenetic relationships.
 alfpy also contains Python scripts with user-friendly command-line interfaces 
 that let you compare unaligned FASTA sequences with more than 40 distance methods.
 
+
+Latest source code
+------------------
 The official source code repository is at: https://github.com/aziele/alfpy
 
+
+Web sites
+---------
 alfpy is also available as a web app: http://www.combio.pl/alfree
 
 
@@ -33,19 +39,10 @@ or download and unzip the source code, go to this directory at the command line,
     sudo python setup.py install
 
 
-
 Alfpy usage
 -----------
 
 The examples of using Alfpy are available at: http://www.combio.pl/alfree/download/.
-
-
-License
--------
-
-alfpy is under the MIT license; see doc/LICENSE.txt. Distribution, 
-modification and redistribution, incorporation into other software, and 
-pretty much everything else is allowed.
 
 
 Testing
@@ -59,3 +56,11 @@ To run tests, go to the alfpy source code directory and type::
 If you wanto to test a specific file (e.g. ``test_word_distance.py``), type::
 
     python -m unittest tests.test_word_distance
+
+
+License
+-------
+
+alfpy is under the MIT license; see ``LICENSE.txt``. Distribution, 
+modification and redistribution, incorporation into other software,
+and pretty much everything else is allowed.
