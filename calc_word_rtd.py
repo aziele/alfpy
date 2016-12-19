@@ -5,9 +5,9 @@
 import argparse
 import sys
 
-from alfpy import rtd
 from alfpy import word_distance
 from alfpy import word_pattern
+from alfpy import word_rtd
 from alfpy import word_vector
 from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
@@ -92,8 +92,8 @@ def main():
     else:
         p = args.word_pattern
 
-    vector = rtd.create_vector(seq_records.count, p)
-    dist = rtd.Distance(vector, args.distance)
+    vector = word_rtd.create_vector(seq_records.count, p)
+    dist = word_rtd.Distance(vector, args.distance)
 
     matrix = distmatrix.create(seq_records.id_list, dist)
 

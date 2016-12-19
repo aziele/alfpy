@@ -8,7 +8,7 @@ class ScriptTest(unittest.TestCase, utils.ScriptsCommonTest):
     def __init__(self, *args, **kwargs):
         super(ScriptTest, self).__init__(*args, **kwargs)
         utils.ScriptsCommonTest.set_test_data()
-        self.script_name = 'calc_dna2d.py'
+        self.script_name = 'calc_graphdna.py'
 
     def test_arg_vector_when_no_fasta(self):
         args = ['--vector', '2DSV']

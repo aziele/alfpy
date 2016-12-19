@@ -7,7 +7,6 @@ from . import utils
 
 
 class Test(unittest.TestCase, utils.ModulesCommonTest):
-    """Shared methods and tests for creating NCD vectors."""
 
     def __init__(self, *args, **kwargs):
         super(Test, self).__init__(*args, **kwargs)

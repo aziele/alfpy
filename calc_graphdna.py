@@ -5,7 +5,7 @@
 import argparse
 import sys
 
-from alfpy import graph2Ddna
+from alfpy import graphdna
 from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
 from alfpy.version import __version__
@@ -15,7 +15,7 @@ def get_parser():
     parser = argparse.ArgumentParser(
         description='''Calculate distance between DNA sequences based on
         the two-dimensional (2D) graphical DNA curve''',
-        add_help=False, prog='calc_dna2d.py'
+        add_help=False, prog='calc_graphdna.py'
     )
     group = parser.add_argument_group('REQUIRED ARGUMENTS')
     group.add_argument('--fasta', '-f',
@@ -65,12 +65,12 @@ def main():
 
     seq_records = seqrecords.read_fasta(args.fasta)
     if args.vector == '2DSV':
-        vector = graph2Ddna.create_2DSGraphVectors(seq_records)
+        vector = graphdna.create_2DSGraphVectors(seq_records)
     elif args.vector == '2DNV':
-        vector = graph2Ddna.create_2DNGraphVectors(seq_records)
+        vector = graphdna.create_2DNGraphVectors(seq_records)
     else:
-        vector = graph2Ddna.create_2DMGraphVectors(seq_records, args.ndim)
-    dist = graph2Ddna.Distance(vector)
+        vector = graphdna.create_2DMGraphVectors(seq_records, args.ndim)
+    dist = graphdna.Distance(vector)
     matrix = distmatrix.create(seq_records.id_list, dist)
 
     if args.out:

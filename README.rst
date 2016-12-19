@@ -14,36 +14,34 @@ alfpy is also available as a web app: http://www.combio.pl/alfree
 
 
 Requirements
-============
+------------
 
 1. Python (https://www.python.org/) version 2.7 or >= 3.3
 2. NumPy (http://www.numpy.org/).
 
 
 Installation
-============
+------------
 
-**Install using pip:** Use `pip <https://pip.pypa.io/en/stable/installing/>`_ to download, build, and install alfpy and its dependencies::
+Use `pip <https://pip.pypa.io/en/stable/installing/>`_ to download, build and install alfpy and its dependencies::
 
     pip install alfpy
 
 
-**Install using pip:** You may have to build and install alfpy. Download and unzip the
-source code, go to this directory at the command line, and type::
+or download and unzip the source code, go to this directory at the command line, and type::
 
     sudo python setup.py install
 
-Here you can replace ``python`` with a specific version, e.g. ``python3.5``.
 
 
 Alfpy usage
-===========
+-----------
 
 The examples of using Alfpy are available at: http://www.combio.pl/alfree/download/.
 
 
 License
-=======
+-------
 
 alfpy is under the MIT license; see doc/LICENSE.txt. Distribution, 
 modification and redistribution, incorporation into other software, and 
@@ -51,13 +49,13 @@ pretty much everything else is allowed.
 
 
 Testing
-=======
+-------
 
-To run all the tests, go to the alfpy source code directory and type::
+To run tests, go to the alfpy source code directory and type::
 
     python -m unittest discover
 
 
-You can test a specific file::
+If you wanto to test a specific file (e.g. ``test_word_distance.py``), type::
 
     python -m unittest tests.test_word_distance

@@ -8,7 +8,6 @@ from . import utils
 
 
 class VectorTest(unittest.TestCase):
-    """Shared methods and tests for creating BBC vectors."""
 
     def test_count_seq_chars(self):
         seq = 'MKSTGWHFSG'
@@ -32,14 +31,13 @@ class VectorTest(unittest.TestCase):
 
 
 class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
-    """Shared methods and tests for Distances calculations."""
 
     def __init__(self, *args, **kwargs):
         super(DistanceTest, self).__init__(*args, **kwargs)
         utils.ModulesCommonTest.set_test_data()
 
     def test_wmetric_blosum62(self):
-        # agrees with decaf+py
+        # The result of this method is identical to that from decaf+py.
         matrix = subsmat.get('blosum62')
         dist = wmetric.Distance(self.pep_records, matrix)
         matrix = distmatrix.create(self.pep_records.id_list, dist)

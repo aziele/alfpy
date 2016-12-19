@@ -9,7 +9,6 @@ from . import utils
 
 
 class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
-    """Shared methods and tests for Distances calculations."""
 
     def __init__(self, *args, **kwargs):
         super(DistanceTest, self).__init__(*args, **kwargs)
@@ -21,9 +20,9 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
                                        self.pattern)
 
     def test_euclid_squared_counts(self):
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.counts, 'euclid_squared')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
-        # agrees with decaf+py
         data = ['   3',
                 'seq1       0.0000000 57.0000000 30.0000000',
                 'seq2       57.0000000 0.0000000 19.0000000',
@@ -31,9 +30,9 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_euclid_squared_freqs(self):
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.freqs, 'euclid_squared')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
-        # agrees with decaf+py
         data = ['   3',
                 'seq1       0.0000000 0.1416402 0.0641298',
                 'seq2       0.1416402 0.0000000 0.0677565',
@@ -41,9 +40,9 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_euclid_norm_counts(self):
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.counts, 'euclid_norm')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
-        # agrees with decaf+py
         data = ['   3',
                 'seq1       0.0000000 7.5498344 5.4772256',
                 'seq2       7.5498344 0.0000000 4.3588989',
@@ -51,9 +50,9 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_euclid_norm_freqs(self):
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.freqs, 'euclid_norm')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
-        # agrees with decaf+py
         data = ['   3',
                 'seq1       0.0000000 0.3763512 0.2532387',
                 'seq2       0.3763512 0.0000000 0.2603008',
@@ -61,9 +60,9 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_angle_cos_diss_freqs(self):
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.freqs, 'angle_cos_diss')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
-        # agrees with decaf+py
         data = ['   3',
                 'seq1       0.0000000 0.2797355 0.1500672',
                 'seq2       0.2797355 0.0000000 0.1261027',
@@ -71,9 +70,9 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_angle_cos_evol_freqs(self):
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.freqs, 'angle_cos_evol')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
-        # agrees with decaf+py
         data = ['   3',
                 'seq1       0.0000000 0.3281368 0.1625980',
                 'seq2       0.3281368 0.0000000 0.1347925',
@@ -81,7 +80,7 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_diff_abs_add_freqs(self):
-        # agrees with decaf+py
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.freqs, 'diff_abs_add')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
         data = ['   3',
@@ -91,7 +90,7 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_diff_abs_mult1_freqs(self):
-        # agrees with decaf+py
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.freqs, 'diff_abs_mult1')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
         data = ['   3',
@@ -101,7 +100,7 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_diff_abs_mult2_freqs(self):
-        # agrees with decaf+py
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.freqs, 'diff_abs_mult2')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
         data = ['   3',
@@ -111,7 +110,7 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_euclid_seqlen1_freqs(self):
-        # agrees with decaf+py
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.freqs, 'euclid_seqlen1')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
         data = ['   3',
@@ -121,7 +120,7 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(data))
 
     def test_euclid_seqlen2_freqs(self):
-        # agrees with decaf+py
+        # The result of this method is identical to that from decaf+py.
         dist = word_distance.Distance(self.freqs, 'euclid_seqlen2')
         matrix = distmatrix.create(self.dna_records.id_list, dist)
         data = ['   3',

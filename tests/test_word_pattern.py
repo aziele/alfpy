@@ -1,14 +1,12 @@
 import os
 import unittest
 
-from alfpy.utils import seqrecords
 from alfpy import word_pattern
 
 from . import utils
 
 
 class Test(unittest.TestCase, utils.ModulesCommonTest):
-    """Shared methods and tests for creating word patterns."""
 
     def __init__(self, *args, **kwargs):
         super(Test, self).__init__(*args, **kwargs)

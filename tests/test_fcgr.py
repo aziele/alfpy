@@ -8,7 +8,6 @@ from . import utils
 
 
 class VectorTest(unittest.TestCase, utils.ModulesCommonTest):
-    """Shared methods and tests for creating BBC vectors."""
 
     def __init__(self, *args, **kwargs):
         super(VectorTest, self).__init__(*args, **kwargs)
@@ -37,7 +36,6 @@ class VectorTest(unittest.TestCase, utils.ModulesCommonTest):
 
 
 class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
-    """Shared methods and tests for Distances calculations."""
 
     def __init__(self, *args, **kwargs):
         super(DistanceTest, self).__init__(*args, **kwargs)

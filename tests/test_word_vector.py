@@ -7,7 +7,6 @@ from . import utils
 
 
 class WordVectorTest(unittest.TestCase, utils.ModulesCommonTest):
-    """Shared methods and tests for creating BBC vectors."""
 
     def __init__(self, *args, **kwargs):
         super(WordVectorTest, self).__init__(*args, **kwargs)
@@ -24,7 +23,7 @@ class WordVectorTest(unittest.TestCase, utils.ModulesCommonTest):
                "T\t5 5 2"]
         lengths = [25, 18, 15]
         self.assertEqual(counts.format(decimal_places=0), "\n".join(exp))
-        # Check if counts sum to sequences length
+        # Counts in a sequence should sum to sequence length.
         for i in range(len(counts.data)):
             self.assertEqual(sum(counts.data[i]), lengths[i])
 
@@ -49,8 +48,6 @@ class WordVectorTest(unittest.TestCase, utils.ModulesCommonTest):
             "TG\t1 0 0"
         ]
         self.assertEqual(counts.format(decimal_places=0), "\n".join(exp))
-
-        # Check if counts sum to sequences length
         for i in range(len(counts.data)):
             self.assertEqual(sum(counts.data[i]), counts.seq_lengths[i] - 1)
 
@@ -65,16 +62,13 @@ class WordVectorTest(unittest.TestCase, utils.ModulesCommonTest):
             "T\t0.200 0.278 0.133",
         ]
         self.assertEqual(freqs.format(), "\n".join(exp))
-
-        # Check whether freqs in a given sequence sum to 1.
+        # Freqs in a given sequence should sum to 1.
         for seqrow in freqs.data:
             self.assertEqual('{:.3f}'.format(sum(seqrow)), '1.000')
 
     def test_freqs_pattern2(self):
         freqs = word_vector.Freqs(self.dna_records.length_list,
                                   self.pattern2)
-
-        # Check whether freqs in a given sequence sum to 1.
         for seqrow in freqs.data:
             self.assertEqual('{:.3f}'.format(sum(seqrow)), '1.000')
         exp = [
@@ -171,12 +165,12 @@ class WordVectorTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(fw.format(), "\n".join(exp))
 
     def test_equal_freqs_pattern2(self):
+        # The result of this method is identical to that from decaf+py.
         p = word_pattern.create(self.dna_records.seq_list, 2, True)
         freq = word_vector.Freqs(self.dna_records.length_list, p)
         freqmodel = word_vector.EqualFreqs(alphabet_size=4)
         freqs_std = word_vector.FreqsStd(self.dna_records.length_list,
                                          p, freqmodel)
-        # Freqs_std agrees with decaf+py
         exp = [
             "TA\t0.113 0.189 0.169",
             "AC\t0.150 0.063 0.169",

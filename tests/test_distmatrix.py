@@ -2,10 +2,8 @@ import numpy as np
 import os
 import unittest
 
-from alfpy import wmetric
 from alfpy import word_distance
 from alfpy.utils import distmatrix
-from alfpy.utils import seqrecords
 
 from . import utils
 

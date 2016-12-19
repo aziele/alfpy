@@ -30,18 +30,6 @@ def runscript(scriptname, args):
     return p.returncode, out
 
 
-class ModulesCommonTest:
-
-    @classmethod
-    def set_test_data(cls):
-        fh = open(get_test_data('dna.fa'))
-        cls.dna_records = seqrecords.read_fasta(fh)
-        fh.close()
-        fh = open(get_test_data('pep.fa'))
-        cls.pep_records = seqrecords.read_fasta(fh)
-        fh.close()
-
-
 class ScriptsCommonTest:
     """Methods testing arguments that are common to all scripts."""
 
@@ -101,3 +89,15 @@ class ScriptsWordCommonTest(ScriptsCommonTest):
         cls.filename_pep_2mer_wordpos = get_test_data(
             'pep.fa.2mer.wordpos.txt')
         cls.filename_pep_2mer = get_test_data('pep.fa.2mer.txt')
+
+
+class ModulesCommonTest:
+
+    @classmethod
+    def set_test_data(cls):
+        fh = open(get_test_data('dna.fa'))
+        cls.dna_records = seqrecords.read_fasta(fh)
+        fh.close()
+        fh = open(get_test_data('pep.fa'))
+        cls.pep_records = seqrecords.read_fasta(fh)
+        fh.close()

@@ -13,10 +13,10 @@ class FastaTest(unittest.TestCase):
         self.ID_LIST = ['seq1', 'seq2', 'seq3', 'seq4']
         self.DESC_LIST = ['seq1 desc', 'seq2 desc', 'seq3 desc', '']
         self.SEQ_LIST = [
-            'MEVVIRSANFTDNAKIIIVQLNASVEINCTRPNNYTRKGIRIGPGRAVYAAEEIIGDNTLKQVVTKLRE',
-            'MVIRSANFTDNAKIIIVQLNASVEINCTRPNNNTRKGIRIGPGRAVYAAEEIIGDIRRAHCNIS',
-            'MFTDNAKIIIVQLNASVEINCTRPNNNTRKGIHIGPGRAFYATGEIIGDIRQAHCNISGAKW',
-            'MFTDNAKIIIVQLNASVEINCTRPNNNTR'
+         'MEVVIRSANFTDNAKIIIVQLNASVEINCTRPNNYTRKGIRIGPGRAVYAAEEIIGDNTLKQVVTKLRE',
+         'MVIRSANFTDNAKIIIVQLNASVEINCTRPNNNTRKGIRIGPGRAVYAAEEIIGDIRRAHCNIS',
+         'MFTDNAKIIIVQLNASVEINCTRPNNNTRKGIHIGPGRAFYATGEIIGDIRQAHCNISGAKW',
+         'MFTDNAKIIIVQLNASVEINCTRPNNNTR'
         ]
 
     def _validate_FastaRecord_init(self, fasta_record, seqidx):
@@ -27,14 +27,16 @@ class FastaTest(unittest.TestCase):
         self.assertEqual(len(fasta_record), len(self.SEQ_LIST[seqidx]))
 
     def test_single_FastaRecord_init(self):
-        r = fasta.FastaRecord(self.SEQ_LIST[0], self.ID_LIST[
-                              0], self.DESC_LIST[0])
+        r = fasta.FastaRecord(self.SEQ_LIST[0],
+                              self.ID_LIST[0],
+                              self.DESC_LIST[0])
         self._validate_FastaRecord_init(r, seqidx=0)
 
     def test_multiple_FastaRecord_init(self):
         for i in range(len(self.ID_LIST)):
-            r = fasta.FastaRecord(self.SEQ_LIST[i], self.ID_LIST[
-                                  i], self.DESC_LIST[i])
+            r = fasta.FastaRecord(self.SEQ_LIST[i],
+                                  self.ID_LIST[i],
+                                  self.DESC_LIST[i])
             self._validate_FastaRecord_init(r, seqidx=i)
 
     def test_read_fasta(self):

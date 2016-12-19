@@ -103,7 +103,7 @@ class ScriptTest(unittest.TestCase, utils.ScriptsWordCommonTest):
         self.assertIn('error: argument --vector/-v: invalid choice', out)
 
     def test_output_word_size2_counts_euclid_squared(self):
-        # same as decaf+py
+        # The result of this method is identical to that from decaf+py.
         args = ['--fasta', self.filename_pep, '--word_size', '2',
                 '--vector', 'counts', '--distance',
                 'euclid_squared']
@@ -112,7 +112,7 @@ class ScriptTest(unittest.TestCase, utils.ScriptsWordCommonTest):
         self.assertEqual(md5, '1b2a44cb139e2ffcb4cc8ebc9eca81a5')
 
     def test_output_word_size2_freqs_euclid_squared(self):
-        # same as decaf+py
+        # The result of this method is identical to that from decaf+py.
         args = ['--fasta', self.filename_pep, '--word_size', '2',
                 '--vector', 'freqs', '--distance',
                 'euclid_squared']
@@ -121,8 +121,7 @@ class ScriptTest(unittest.TestCase, utils.ScriptsWordCommonTest):
         self.assertEqual(md5, '043a8af729528379e92618cbeed451ab')
 
     def test_output_wordsize2_freqs_std_alphabet20_euclid_squared(self):
-        # same as decaf+py
-        # maybe also include it in word_vector or word_distance
+        # The result of this method is identical to that from decaf+py.
         args = ['--fasta', self.filename_pep, '--word_size', '2',
                 '--vector', 'freqs_std', '--distance',
                 'euclid_squared', '--alphabet_size', '20']

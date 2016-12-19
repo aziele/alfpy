@@ -5,7 +5,7 @@
 import argparse
 import sys
 
-from alfpy import d2
+from alfpy import word_d2
 from alfpy import word_pattern
 from alfpy import word_vector
 from alfpy.utils import distmatrix
@@ -107,7 +107,7 @@ def main():
         v = vecklas(patterns=p, **kwargs)
         vecs.append(v)
 
-    dist = d2.Distance(vecs)
+    dist = word_d2.Distance(vecs)
     matrix = distmatrix.create(seq_records.id_list, dist)
 
     if args.out:

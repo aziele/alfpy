@@ -1,6 +1,6 @@
 import unittest
 
-from alfpy import d2
+from alfpy import word_d2
 from alfpy import word_pattern
 from alfpy import word_vector
 from alfpy.utils import distmatrix
@@ -9,7 +9,6 @@ from . import utils
 
 
 class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
-    """Shared methods and tests for Distances calculations."""
 
     def __init__(self, *args, **kwargs):
         super(DistanceTest, self).__init__(*args, **kwargs)
@@ -22,11 +21,11 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
             self.patterns.append(p)
             c = word_vector.Counts(self.pep_records.length_list, p)
             self.counts.append(c)
-            c = word_vector.Freqs(self.pep_records.length_list, p)
-            self.freqs.append(c)
+            f = word_vector.Freqs(self.pep_records.length_list, p)
+            self.freqs.append(f)
 
     def test_counts_from1_to4(self):
-        dist = d2.Distance(self.counts)
+        dist = word_d2.Distance(self.counts)
         matrix = distmatrix.create(self.pep_records.id_list, dist)
         exp = [
             '   4',
@@ -38,7 +37,7 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(decimal_places=0), "\n".join(exp))
 
     def test_freqs_from1_to4(self):
-        dist = d2.Distance(self.freqs)
+        dist = word_d2.Distance(self.freqs)
         matrix = distmatrix.create(self.pep_records.id_list, dist)
         exp = [
             '   4',
@@ -51,7 +50,7 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(matrix.format(), "\n".join(exp))
 
     def test_counts_from1_to1(self):
-        dist = d2.Distance([self.counts[0]])
+        dist = word_d2.Distance([self.counts[0]])
         matrix = distmatrix.create(self.pep_records.id_list, dist)
         exp = [
             '   4',
