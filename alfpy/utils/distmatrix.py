@@ -115,12 +115,12 @@ class Matrix():
                 l = ['{0:.{1}f}'.format(line[i], decimal_places)
                      for i in range(0, len(line))]
                 l.insert(0, '{0: <10}'.format(seqid))
-                handle.write(" ".join(l) + '\n')
+                handle.write(" ".join(l) + "\n")
         elif f == 'pairwise':
             for i, j, seqid1, seqid2, distval in self:
-                handle.write("{0}\t{1}\t{2:.{3}f}\n".format(seqid1, seqid2, 
-                                                           distval,
-                                                           decimal_places))
+                handle.write("{0}\t{1}\t{2:.{3}f}\n".format(seqid1, seqid2,
+                                                            distval,
+                                                            decimal_places))
 
     def display(self, f="phylip", decimal_places=7):
         """Write a distance matrix to the screen."""
@@ -139,13 +139,13 @@ class Matrix():
         return data
 
     def format(self, decimal_places=7):
-        lines = ["   {0}\n".format(len(self.id_list))]
+        lines = ["   {0}".format(len(self.id_list))]
         for i, line in enumerate(self.data):
             seqid = self.id_list[i][:10]
             l = ['{0:.{1}f}'.format(line[i], decimal_places)
-                     for i in range(0, len(line))]
+                 for i in range(0, len(line))]
             l.insert(0, '{0: <10}'.format(seqid))
-            lines.append(" ".join(l) + '\n')
+            lines.append("\n" + " ".join(l))
         return "".join(lines)
 
     def min(self):

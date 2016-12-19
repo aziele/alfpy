@@ -58,7 +58,7 @@ class Pattern:
             - number of word occurrences in input sequences
             - number of input sequences the word is present
             - word/pattern
-            - pairs of integer numbers (seq number: number of times a 
+            - pairs of integer numbers (seq number: number of times a
               given word appears in this sequence)
 
         Examples:
@@ -76,7 +76,7 @@ class Pattern:
             l = ['{0}:{1}'.format(n, c) for n, c in occr.items()]
             occr_seqs = " ".join(l)
             lines.append((occr_count, seqs_count, word, occr_seqs))
-        lines.sort(reverse=True)
+        lines.sort(reverse=False, key=lambda el: (-el[0], -el[1], el[2]))
         return lines
 
     def _teiresias_format(self):
@@ -105,7 +105,7 @@ class Pattern:
             occr_count = len(l)
             offsets = " ".join(l)
             lines.append((occr_count, seqs_count, word, offsets))
-        lines.sort(reverse=True)
+        lines.sort(reverse=False, key=lambda el: (-el[0], -el[1], el[2]))
         return lines
 
     def format(self, formattype=None):

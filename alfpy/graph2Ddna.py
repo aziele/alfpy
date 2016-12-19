@@ -85,10 +85,10 @@ def _2DMGraphVector(seq, n):
 
     Examples:
         >>> s = 'ATGCCTGACTGNATGAGAGAC'
-        >>> print(_2DMGraphVector(s), 10)
+        >>> print(_2DMGraphVector(s, 10))
         [21. 13.44  13.44 16.15  21.16   29.01  40.87  58.58  84.99  124.39]
 
-        >>> print(_2DMGraphVector(s), 5)
+        >>> print(_2DMGraphVector(s, 5))
         [ 21.    13.44  13.44  16.15  21.16]
 
     """

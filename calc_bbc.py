@@ -27,7 +27,8 @@ def get_parser():
 
     group = parser.add_argument_group('OPTIONAL ARGUMENTS')
     group.add_argument('--k', '-k', help='''maximum distance to observe
-                        correlation between bases''', type=int, default=10)
+                        correlation between bases [default: %(default)s]''',
+                        type=int, default=10, metavar="INT")
     group.add_argument('--out', '-o', help="output filename",
                        metavar="FILE")
     group.add_argument('--outfmt', choices=['phylip', 'pairwise'],

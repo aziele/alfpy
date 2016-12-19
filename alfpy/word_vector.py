@@ -40,7 +40,6 @@ class Counts:
         self.patlen = len(patterns.pat_list[0])
         self.data = self._get_counts_occurrence(len(seq_lengths), patterns)
 
-
     @staticmethod
     def _get_counts_occurrence(seq_count, patterns):
         """Create a matrix of word counts for sequences.
@@ -74,12 +73,19 @@ class Counts:
             result += '\n' + str(list(data))
         return result
 
-    def format(self):
-        """Return the matrix of counts as a pretty-formated string"""
+    def format(self, decimal_places=3):
+        """Return a pretty-formated string of vector."""
+        data = np.transpose(self.data)
         l = []
-        for row in self.data:
-            l.append("\t".join(['{:.3f}'.format(v) for v in row]))
-        return "\n".join(l)
+        for i, row in enumerate(data):
+            word = self.pat_list[i]
+            l.append((np.sum(row), word, i))
+        l.sort(key=lambda el: (-el[0], el[1]))
+        f = []
+        for _, word, i in l:
+            values = ['{0:.{1}f}'.format(v, decimal_places) for v in data[i]]
+            f.append('{0}\t{1}'.format(word, " ".join(values)))
+        return "\n".join(f)
 
 
 class Bools(Counts):

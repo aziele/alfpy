@@ -32,7 +32,7 @@ def base_base_correlation(seq, k, alphabet):
                     sequences with missing letters are to be compared.
 
     Returns:
-        numpy.ndarray
+        numpy.ndarray: shape (1, 16) for DNA and (1, 400) for protein.
 
     Examples:
         >>> print(base_base_correlation('ATGCATGC', 1, 'ATGC'))

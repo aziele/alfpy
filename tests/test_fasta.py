@@ -1,67 +1,53 @@
 import os
 import unittest
-import uuid
 
 from alfpy.utils import fasta
 
-
-# Input data for tests.
-ID_LIST = ['seq1', 'seq2', 'seq3', 'seq4']
-DESC_LIST = ['seq1 desc', 'seq2 desc', 'seq3 desc', '']
-SEQ_LIST = [
-    'MEVVIRSANFTDNAKIIIVQLNASVEINCTRPNNYTRKGIRIGPGRAVYAAEEIIGDNTLKQVVTKLRE',
-    'MVIRSANFTDNAKIIIVQLNASVEINCTRPNNNTRKGIRIGPGRAVYAAEEIIGDIRRAHCNIS',
-    'MFTDNAKIIIVQLNASVEINCTRPNNNTRKGIHIGPGRAFYATGEIIGDIRQAHCNISGAKW',
-    'MFTDNAKIIIVQLNASVEINCTRPNNNTR'
-]
-FASTA_LIST = ['>seq1 seq1 desc\n',
-              'MEVVIRSANFTDNAKIIIVQLNASVEINCTR\n',
-              'PNNYTRKGIRIGPGRAVYAAEEIIGDNTLKQ\n',
-              'VVTKLRE\n',
-              '>seq2 seq2 desc\n',
-              'MVIRSANFTDNAKIIIVQLNASVEINCTRPN\n',
-              'NNTRKGIRIGPGRAVYAAEEIIGDIRRAHCN\n',
-              'IS\n',
-              '>seq3 seq3 desc\n',
-              'MFTDNAKIIIVQLNASVEINCTRPNNNTRKG\n',
-              'IHIGPGRAFYATGEIIGDIRQAHCNISGAKW\n',
-              '>seq4\n',
-              'MFTDNAKIIIVQLNASVEINCTRPNNNTR\n'
-              ]
-#
+from . import utils
 
 
-class TestFasta(unittest.TestCase):
+class FastaTest(unittest.TestCase):
 
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
+    def __init__(self, *args, **kwargs):
+        super(FastaTest, self).__init__(*args, **kwargs)
+        self.ID_LIST = ['seq1', 'seq2', 'seq3', 'seq4']
+        self.DESC_LIST = ['seq1 desc', 'seq2 desc', 'seq3 desc', '']
+        self.SEQ_LIST = [
+            'MEVVIRSANFTDNAKIIIVQLNASVEINCTRPNNYTRKGIRIGPGRAVYAAEEIIGDNTLKQVVTKLRE',
+            'MVIRSANFTDNAKIIIVQLNASVEINCTRPNNNTRKGIRIGPGRAVYAAEEIIGDIRRAHCNIS',
+            'MFTDNAKIIIVQLNASVEINCTRPNNNTRKGIHIGPGRAFYATGEIIGDIRQAHCNISGAKW',
+            'MFTDNAKIIIVQLNASVEINCTRPNNNTR'
+        ]
 
     def _validate_FastaRecord_init(self, fasta_record, seqidx):
         self.assertIsInstance(fasta_record, fasta.FastaRecord)
-        self.assertEqual(fasta_record.seq, SEQ_LIST[seqidx])
-        self.assertEqual(fasta_record.id, ID_LIST[seqidx])
-        self.assertEqual(fasta_record.description, DESC_LIST[seqidx])
-        self.assertEqual(len(fasta_record), len(SEQ_LIST[seqidx]))
+        self.assertEqual(fasta_record.seq, self.SEQ_LIST[seqidx])
+        self.assertEqual(fasta_record.id, self.ID_LIST[seqidx])
+        self.assertEqual(fasta_record.description, self.DESC_LIST[seqidx])
+        self.assertEqual(len(fasta_record), len(self.SEQ_LIST[seqidx]))
 
     def test_single_FastaRecord_init(self):
-        r = fasta.FastaRecord(SEQ_LIST[0], ID_LIST[0], DESC_LIST[0])
+        r = fasta.FastaRecord(self.SEQ_LIST[0], self.ID_LIST[
+                              0], self.DESC_LIST[0])
         self._validate_FastaRecord_init(r, seqidx=0)
 
     def test_multiple_FastaRecord_init(self):
-        for i in range(len(ID_LIST)):
-            r = fasta.FastaRecord(SEQ_LIST[i], ID_LIST[i], DESC_LIST[i])
+        for i in range(len(self.ID_LIST)):
+            r = fasta.FastaRecord(self.SEQ_LIST[i], self.ID_LIST[
+                                  i], self.DESC_LIST[i])
             self._validate_FastaRecord_init(r, seqidx=i)
 
     def test_read_fasta(self):
-        r = fasta.read(FASTA_LIST)
+        fh = open(utils.get_test_data('pep.fa'))
+        r = fasta.read(fh)
+        fh.close()
         self._validate_FastaRecord_init(r, seqidx=0)
 
     def test_parse_fasta(self):
-        for i, rec in enumerate(fasta.parse(FASTA_LIST)):
+        fh = open(utils.get_test_data('pep.fa'))
+        for i, rec in enumerate(fasta.parse(fh)):
             self._validate_FastaRecord_init(rec, seqidx=i)
+        fh.close()
 
     def test_parse_fasta_missing_sequences(self):
         ids = ['seq1', 'seq2']
@@ -83,18 +69,20 @@ class TestFasta(unittest.TestCase):
         self.assertEqual(''.join(l), r.format(wrap=wrap))
 
     def test_input_output_file_fasta(self):
-        filename = '{}'.format(uuid.uuid4().hex)
-        oh = open(filename, 'w')
+        filename = 'temp.fa'
+        oh = open(utils.get_test_data(filename), 'w')
         l1 = []
-        for seq_record in fasta.parse(FASTA_LIST):
+        fh = open(utils.get_test_data('pep.fa'))
+        for seq_record in fasta.parse(fh):
             l1.append(seq_record.format())
             oh.write(seq_record.format())
             oh.write('\n')
+        fh.close()
         oh.close()
-        fh = open(filename)
+        fh = open(utils.get_test_data(filename))
         l2 = [seq_record.format() for seq_record in fasta.parse(fh)]
         fh.close()
-        os.remove(filename)
+        os.remove(utils.get_test_data(filename))
         self.assertEqual(l1, l2)
 
 

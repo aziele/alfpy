@@ -23,7 +23,7 @@ from .utils import distance
 
 
 def calc_rtd(word_positions, word_size):
-    """Compute return time distribution (RTD) of a given word
+    """Compute return time distribution (RTD) of a given word.
 
     Args:
         word_positions (list) : list of sequence positions of a given word
@@ -38,7 +38,7 @@ def calc_rtd(word_positions, word_size):
         >>> print(apos)
         [2, 4, 6, 7, 18, 24, 25, 26, 28, 34, 35, 43, 44, 46]
         >>> print(calc_rtd(apos, 1))
-        (2.3846153846153846, 3.1510306381944679)
+        (3.3846153846153846, 3.1510306381944679)
 
     """
     l = []
@@ -62,7 +62,7 @@ def create_vector(seqcount, pattern):
 
     Returns:
         ndarray: matrix of RTD vectors
-                 (shape: number of seqs, squared number of words)
+                 (shape: number of seqs, doubled number of words)
 
     """
     words = pattern.pat_list

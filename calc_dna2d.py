@@ -67,7 +67,7 @@ def main():
     if args.vector == '2DSV':
         vector = graph2Ddna.create_2DSGraphVectors(seq_records)
     elif args.vector == '2DNV':
-        vector = graph2Ddna.create_2DSGraphVectors(seq_records)
+        vector = graph2Ddna.create_2DNGraphVectors(seq_records)
     else:
         vector = graph2Ddna.create_2DMGraphVectors(seq_records, args.ndim)
     dist = graph2Ddna.Distance(vector)

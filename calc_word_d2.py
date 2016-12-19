@@ -66,7 +66,9 @@ def get_parser():
 
 def validate_args(parser):
     args = parser.parse_args()
-    if args.min_word_size >= args.max_word_size:
+    if not args.min_word_size:
+        parser.error("min_word_size must be greater than 0")
+    elif args.min_word_size >= args.max_word_size:
         parser.error("max_word_size must be greater than min_word_size")
     if args.char_weights:
         try:
@@ -75,6 +77,7 @@ def validate_args(parser):
         except:
             e = 'Invalid format for --char_weights {0}'.format(
                 args.char_weights.name)
+            parser.error(e)
     return args
 
 

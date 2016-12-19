@@ -212,7 +212,7 @@ class Distance:
         try:
             pwdist_func = 'self.pwdist_%s' % disttype
             self.pairwise_distance = eval(pwdist_func)
-        # method does not exist
+        # Method does not exist.
         except AttributeError:
             msg = 'unknown disttype "%s"' % disttype
             raise ValueError(msg)

@@ -46,11 +46,10 @@ Here you can replace ``python`` with a specific version, e.g. ``python3.5``.
 |
 
 Alfpy usage
-===========
+-----------
 
 The examples of using Alfpy are available at: http://www.combio.pl/alfree/download/.
 
-|
 
 License
 -------
@@ -58,3 +57,19 @@ License
 alfpy is under the MIT license; see doc/LICENSE.txt. Distribution, 
 modification and redistribution, incorporation into other software, and 
 pretty much everything else is allowed.
+
+
+Testing
+-------
+
+To run all the tests, go to the alfpy source code directory and type::
+
+    python -m unittest discover
+
+You can run tests with more detail (higher verbosity) by passing in the -v flag::
+
+    python -m unittest discover -v
+
+You can test a specific file::
+
+    python -m unittest tests.test_word_distance

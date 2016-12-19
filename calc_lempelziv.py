@@ -59,7 +59,7 @@ def main():
     args = validate_args(parser)
 
     seq_records = seqrecords.read_fasta(args.fasta)
-    dist = lempelziv.Distance(seq_records)
+    dist = lempelziv.Distance(seq_records, args.distance)
     matrix = distmatrix.create(seq_records.id_list, dist)
 
     if args.out:

@@ -79,13 +79,6 @@ def validate_args(parser):
             args.word_pattern = p
     else:
         parser.error("Specify either: --word_size or --word_pattern.")
-    '''
-    try:
-        args.alphabet = alphabet.get_alphabet(args.molecule)
-    except:
-        parser.error("Unknown alphabet {}".format(args.molecule))
-    return args
-    '''
     return args
 
 

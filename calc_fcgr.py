@@ -24,8 +24,7 @@ def get_parser():
                        help='input FASTA sequence filename', required=True,
                        type=argparse.FileType('r'), metavar="FILE")
     group.add_argument('--word_size', '-w', required=True,
-                       help='word size [default: %(default)s]',
-                       type=int)
+                       help='word size', type=int)
 
     group = parser.add_argument_group('OUTPUT ARGUMENTS')
     group.add_argument('--out', '-o', help="output filename",
