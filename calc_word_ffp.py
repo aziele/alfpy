@@ -99,7 +99,7 @@ def main():
     if args.reduce_alphabet:
         p = p.reduce_alphabet(seqcontent.get_reduced_alphabet(args.molecule))
     if args.merge_revcomp:
-        p.merge_revcomp()
+        p = p.merge_revcomp()
 
     freqs = word_vector.Freqs(seq_records.length_list, p)
 
