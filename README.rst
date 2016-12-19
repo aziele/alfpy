@@ -53,7 +53,7 @@ To run tests, go to the alfpy source code directory and type::
     python -m unittest discover
 
 
-If you wanto to test a specific file (e.g. ``test_word_distance.py``), type::
+If you want to test a specific file (e.g. ``test_word_distance.py``), type::
 
     python -m unittest tests.test_word_distance
 
