@@ -17,7 +17,6 @@ References:
 
 """
 
-import math
 import numpy as np
 from .utils import distance
 

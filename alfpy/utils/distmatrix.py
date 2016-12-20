@@ -36,11 +36,9 @@ def create(id_list, distance):
         rows[j][i] = value
     # No need to calculate distances between the same sequences.
     # The distance should be zero.
-    '''
-    for i in range(size):
-        value = distance.pairwise_distance(i, i)
-        rows[i][i] = value
-    '''
+    # for i in range(size):
+    #    value = distance.pairwise_distance(i, i)
+    #    rows[i][i] = value
     return Matrix(id_list, rows)
 
 

@@ -12,7 +12,6 @@ Functions for creating DNA-representing vectors were built upon:
 
 """
 
-import math
 import numpy as np
 
 from .utils import distance
