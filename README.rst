@@ -1,4 +1,4 @@
-|PyPI|
+|PyPI| |Landscape|
 
 alfpy
 =====
@@ -71,3 +71,7 @@ and pretty much everything else is allowed.
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/alfpy.svg?branch=master
     :target: https://pypi.python.org/pypi/alfpy
+
+.. |Landscape| image:: https://landscape.io/github/aziele/alfpy/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/aziele/alfpy/master
+   :alt: Code Health
