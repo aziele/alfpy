@@ -31,14 +31,17 @@ Requirements
 Installation
 ------------
 
-Use `pip <https://pip.pypa.io/en/stable/installing/>`_ to download, build and install alfpy and its dependencies::
+1. Recomended way to install is using `pip <https://pip.pypa.io/en/stable/installing/>`_
+::
 
-    pip install alfpy
+    pip install alfpy   # add --user if you don't have root
 
 
-or download and unzip the source code, go to this directory at the command line, and type::
+2. Alternatively, you can install from Github source code. Download and unzip it.
+::
 
-    sudo python setup.py install
+   cd alfpy
+   python setup.py install
 
 
 Alfpy usage
