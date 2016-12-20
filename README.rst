@@ -1,4 +1,4 @@
-|PyPI| |Landscape|
+|Travis| |PyPI| |Landscape|
 
 alfpy
 =====
@@ -70,6 +70,9 @@ alfpy is under the MIT license; see ``LICENSE.txt``. Distribution,
 modification and redistribution, incorporation into other software,
 and pretty much everything else is allowed.
 
+
+.. |Travis| image:: https://travis-ci.org/aziele/alfpy.svg?branch=master
+    :target: https://travis-ci.org/aziele/alfpy
 
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/alfpy.svg?branch=master
