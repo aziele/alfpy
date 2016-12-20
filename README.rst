@@ -1,3 +1,5 @@
+|PyPI|
+
 alfpy
 =====
 
@@ -64,3 +66,8 @@ License
 alfpy is under the MIT license; see ``LICENSE.txt``. Distribution, 
 modification and redistribution, incorporation into other software,
 and pretty much everything else is allowed.
+
+
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/alfpy.svg?branch=master
+    :target: https://pypi.python.org/pypi/alfpy

@@ -17,7 +17,7 @@ setup(
    install_requires=["numpy"],
    scripts=[
      'calc_bbc.py',
-     'calc_dna2d.py',
+     'calc_graphdna.py',
      'calc_fcgr.py',
      'calc_lempelziv.py',
      'calc_ncd.py',
