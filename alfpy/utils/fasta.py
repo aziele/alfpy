@@ -18,7 +18,7 @@ class FastaRecord():
         Example:
             >>> import Fasta
             >>> record = FastaRecord(seq='MRELEAKAT',
-            ...                      id='NP_055309.2',
+            ...                      seqid='NP_055309.2',
             ...                      description='TNRC6A')
             >>> print(record)
             >NP_055309.2 TNRC6A

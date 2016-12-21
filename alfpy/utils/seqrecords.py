@@ -54,7 +54,7 @@ class SeqRecords:
         """
         l = []
         for seqid, seq in self:
-            seq_record = fasta.FastaRecord(seq=seq, id=seqid)
+            seq_record = fasta.FastaRecord(seq=seq, seqid=seqid)
             l.append(seq_record.format())
         return "\n".join(l)
 
