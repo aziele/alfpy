@@ -25,7 +25,7 @@ class SeqRecords:
         # Make all sequences uppercased.
         self.seq_list = [s.upper() for s in seq_list] if seq_list else []
 
-    def add(self, id, seq):
+    def add(self, seqid, seq):
         """Add a sequence record to the existing collection.
 
         Args:
@@ -35,7 +35,7 @@ class SeqRecords:
         Example:
             >>> seq_record.add("seq3", "TGCTGA")
         """
-        self.id_list.append(id)
+        self.id_list.append(seqid)
         self.seq_list.append(seq.upper())
         self.count += 1
 
@@ -53,8 +53,8 @@ class SeqRecords:
             TGCTGATAGTA
         """
         l = []
-        for id, seq in self:
-            seq_record = fasta.FastaRecord(seq=seq, id=id)
+        for seqid, seq in self:
+            seq_record = fasta.FastaRecord(seq=seq, id=seqid)
             l.append(seq_record.format())
         return "\n".join(l)
 
@@ -76,9 +76,9 @@ class SeqRecords:
             TGCTGATAGTA
         """
         for i in range(self.count):
-            id = self.id_list[i]
+            seqid = self.id_list[i]
             seq = self.seq_list[i]
-            yield id, seq
+            yield seqid, seq
 
     def __len__(self):
         """

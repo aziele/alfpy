@@ -55,7 +55,7 @@ def read_highcharts_matrix(id_list, data):
     """
     size = len(id_list)
     rows = np.zeros([size, size])
-    for i, j, norm_value, value in data:
+    for i, j, _, value in data:
         rows[i][j] = value
         rows[j][i] = value
     return Matrix(id_list, rows)

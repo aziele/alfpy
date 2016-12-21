@@ -152,8 +152,6 @@ class Distance:
             d[(seqidx,)] = complexity(seq)
         # Complexity for pairwise concatenated sequences.
         for i, j in itertools.combinations(range(self.seq_records.count), 2):
-            c1 = d[(i,)]
-            c2 = d[(j,)]
             seq12 = seqs[i] + seqs[j]
             c12 = complexity(seq12)
             d[(i, j)] = c12
@@ -164,7 +162,6 @@ class Distance:
 
     def __get_complexity(self, seq1idx, seq2idx):
         # Fetch cached complexity values.
-        seqs = self.seq_records.seq_list
         c1 = self._complexity[(seq1idx,)]
         c2 = self._complexity[(seq2idx,)]
         c12 = self._complexity[(seq1idx, seq2idx)]

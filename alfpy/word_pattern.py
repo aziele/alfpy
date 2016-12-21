@@ -382,7 +382,7 @@ def create(seq_list, word_size=1, wordpos=False):
 def create_from_fasta(handle, k=1, wordpos=False):
     """Create word patterns (Pattern object) from a FASTA file"""
     seq_records = seqrecords.read_fasta(handle)
-    return create(seq_records.seq_list, k=k, wordpos=wordpos)
+    return create(seq_records.seq_list, word_size=k, wordpos=wordpos)
 
 
 def create_from_bigfasta(filename, k=1):
@@ -398,7 +398,6 @@ def create_from_bigfasta(filename, k=1):
     pos_list = []
     len_list = []
 
-    extend = ''
     word_idx = -1
     seqnum = -1
 
@@ -512,7 +511,7 @@ def main():
     # Manual creation of Pattern instance.
     pat_list = ['ATGC', 'CGCG', 'GCAT']
     occr_list = [{0: 1, 1: 2}, {2: 2}, {0: 3}]
-    pos_list = [{0: [234], 1:[200, 204]}, {2: [20, 45]}, {0: [3, 8, 34]}]
+    #pos_list = [{0: [234], 1:[200, 204]}, {2: [20, 45]}, {0: [3, 8, 34]}]
     pattern = Pattern(pat_list=pat_list, occr_list=occr_list, pos_list=[])
 
     k = 2
