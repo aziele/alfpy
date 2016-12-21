@@ -69,7 +69,7 @@ def validate_args(parser):
             try:
                 p = word_pattern.read(args.word_patterns[i])
                 l.append(p)
-            except:
+            except Exception:
                 parser.error('Invalid format for word pattern: {0}'.format(
                     args.word_patterns[i].name))
 

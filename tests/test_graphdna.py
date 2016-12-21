@@ -57,7 +57,7 @@ class VectorTest(unittest.TestCase, utils.ModulesCommonTest):
     def test_create_2DNGraphVectors(self):
         data = graphdna.create_2DNGraphVectors(self.dna_records)
         md5 = utils.calc_md5(data)
-        self.assertEqual(md5, 'd24c8508fb6f2b833cfe45f7af38be34')
+        self.assertEqual(md5, '3211fc3837b876521a6ab8b6a22b411c')
 
 
 class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):

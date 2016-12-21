@@ -188,10 +188,10 @@ def create_2DMGraphVectors(seq_records, n):
 
 
 def create_2DNGraphVectors(seq_records):
-    data = []
+    data = np.zeros(shape=(seq_records.count, 48))
     for seqidx, seq in enumerate(seq_records.seq_list):
         vector = _2DNGraphVector(seq)
-        data.append(vector)
+        data[seqidx] = vector
     return data
 
 
