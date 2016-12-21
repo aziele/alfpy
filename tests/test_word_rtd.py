@@ -18,7 +18,7 @@ class Test(unittest.TestCase, utils.ModulesCommonTest):
     def test_calc_rtd(self):
         seq = 'CTACACAACTTTGCGGGTAGCCGGAAACATTGTGAATGCGGTGAACA'
         apos = [i for i, nt in enumerate(seq) if nt == 'A']
-        val = word_rtd.calc_rtd(apos, 1)
+        val = word_rtd.calc_rtd(apos)
         exp = (3.3846153846153846, 3.1510306381944679)
         self.assertEqual(val, exp)
 

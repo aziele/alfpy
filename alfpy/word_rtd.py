@@ -21,12 +21,11 @@ import numpy as np
 from .utils import distance
 
 
-def calc_rtd(word_positions, word_size):
+def calc_rtd(word_positions):
     """Compute return time distribution (RTD) of a given word.
 
     Args:
         word_positions (list) : list of sequence positions of a given word
-        word_size (int) : size (length) of a given word
 
     Returns:
         mean, stdev (tuple)
@@ -67,10 +66,10 @@ def create_vector(seqcount, pattern):
     words = pattern.pat_list
     word_size = len(words[0])
     data = np.zeros(shape=(seqcount, len(words) * 2))
-    for wordidx, word in enumerate(words):
+    for wordidx in range(len(words)):
         for seqidx in pattern.pos_list[wordidx]:
             word_positions = pattern.pos_list[wordidx][seqidx]
-            mean, std = calc_rtd(word_positions, word_size)
+            mean, std = calc_rtd(word_positions)
             data[seqidx, wordidx * 2] = mean
             data[seqidx, wordidx * 2 + 1] = std
     return data

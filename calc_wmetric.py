@@ -54,7 +54,7 @@ def validate_args(parser):
     args = parser.parse_args()
     try:
         args.matrix = subsmat.get(args.matrix)
-    except:
+    except KeyError:
         parser.error("Unknown matrix {}".format(args.matrix))
     return args
 

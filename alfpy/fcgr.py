@@ -25,7 +25,7 @@ def fcgr_vector(dnaseq, word_size):
         word_size (int): word size (>= 1)
 
     Returns:
-        list (length equals 4^k)
+        list (length equals 4^word_size)
 
     Examples:
         >>> s = 'ATGCTGATGGATG'
@@ -36,8 +36,7 @@ def fcgr_vector(dnaseq, word_size):
         [1, 0, 1, 0, 0, 0, 4, 0, 2, 2, 0, 0, 1, 3, 0]
 
     """
-    k = word_size
-    ndata = pow(4, k)
+    ndata = pow(4, word_size)
     genlen = len(dnaseq)
     CGRs = np.zeros((genlen + 1, 2))
 
@@ -56,7 +55,7 @@ def fcgr_vector(dnaseq, word_size):
             CGRs[i + 1] = 0.5 * (CGRs[i] + Gpoint)
         if dnaseq[i] == 'C':
             CGRs[i + 1] = 0.5 * (CGRs[i] + Cpoint)
-    temp = 1.0 / pow(2, k)
+    temp = 1.0 / pow(2, word_size)
 
     vectors = np.zeros(shape=(1, ndata))  # numpy
     vectors = [0.0] * ndata  # list
@@ -64,9 +63,9 @@ def fcgr_vector(dnaseq, word_size):
     for point in CGRs:
         xx = int(point[0] / temp)
         yy = int(point[1] / temp)
-        if yy == pow(2, k):
-            yy = pow(2, k) - 1
-        vectors[yy * pow(2, k) + xx] += 1
+        if yy == pow(2, word_size):
+            yy = pow(2, word_size) - 1
+        vectors[yy * pow(2, word_size) + xx] += 1
     vectors.pop(0)
     return vectors
 
