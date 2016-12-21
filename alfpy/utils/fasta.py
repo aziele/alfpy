@@ -12,7 +12,7 @@ class FastaRecord():
         description (str) : Sequence description
     """
 
-    def __init__(self, seq, id, description=False):
+    def __init__(self, seq, seqid, description=False):
         """Create a FastaRecord.
 
         Example:
@@ -25,7 +25,7 @@ class FastaRecord():
             MRELEAKAT
         """
         self.seq = seq
-        self.id = id
+        self.id = seqid
         self.description = description
 
     def __iter__(self):
@@ -122,15 +122,14 @@ def parse(handle):
     for header in faiter:
         header = next(header)[1:].strip()
 
-        id = header.split()[0]
+        seqid = header.split()[0]
         seq = "".join(s.strip() for s in next(faiter))
-        desc = header[len(id):].strip()
-        yield FastaRecord(seq, id=id, description=desc)
+        desc = header[len(seqid):].strip()
+        yield FastaRecord(seq, seqid, description=desc)
 
 
 def read(handle):
-    """
-    Turns a sequence file into a single FastaRecord.
+    """Turns a sequence file into a single FastaRecord.
 
     EXAMPLE:
     >>> import Fasta
@@ -145,6 +144,7 @@ def read(handle):
 
     Use the Fasta.parse(handle) function if you want
     to read multiple records from the handle.
+
     """
     iterator = parse(handle)
     try:
@@ -155,8 +155,7 @@ def read(handle):
 
 
 def to_dict(sequences):
-    """
-    Turns a Fasta sequence iterator or list into a dictionary.
+    """Turns a Fasta sequence iterator or list into a dictionary.
 
     - sequences: an iterator that returns FastaRecord objects,
       or simply a list of SeqRecord objects.
@@ -178,6 +177,7 @@ def to_dict(sequences):
     NOTE:
     This approach is not suitable for very large sets of sequences,
     as all the SeqRecord objects are held in memory.
+
     """
     d = dict()
     for record in sequences:

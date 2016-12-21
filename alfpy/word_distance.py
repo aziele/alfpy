@@ -298,7 +298,6 @@ class Distance(distance.Distance):
         """
         x = self[seq1idx]
         y = self[seq2idx]
-        n = len(x)
         mx = x.mean()
         my = y.mean()
         xm, ym = x - mx, y - my

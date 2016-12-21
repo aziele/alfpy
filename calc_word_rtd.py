@@ -8,7 +8,6 @@ import sys
 from alfpy import word_distance
 from alfpy import word_pattern
 from alfpy import word_rtd
-from alfpy import word_vector
 from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
 from alfpy.version import __version__
