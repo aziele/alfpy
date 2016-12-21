@@ -115,7 +115,7 @@ class Matrix():
                 l.insert(0, '{0: <10}'.format(seqid))
                 handle.write(" ".join(l) + "\n")
         elif f == 'pairwise':
-            for i, j, seqid1, seqid2, distval in self:
+            for _, _, seqid1, seqid2, distval in self:
                 handle.write("{0}\t{1}\t{2:.{3}f}\n".format(seqid1, seqid2,
                                                             distval,
                                                             decimal_places))
@@ -132,7 +132,7 @@ class Matrix():
         """Return a distance matrix as a list in the Highcharts format."""
         data = []
         maxval = self.max()
-        for i, j, seqid1, seqid2, distval in self:
+        for i, j, _, _, distval in self:
             data.append([i, j, distval / maxval, distval])
         return data
 

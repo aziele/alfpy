@@ -52,7 +52,7 @@ def validate_args(parser):
     args = parser.parse_args()
     try:
         args.alphabet = get_alphabet(args.molecule)
-    except:
+    except KeyError:
         parser.error("Unknown alphabet {}".format(args.molecule))
     return args
 

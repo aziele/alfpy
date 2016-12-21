@@ -6,7 +6,6 @@ import argparse
 import sys
 
 from alfpy import fcgr
-from alfpy import word_vector
 from alfpy.utils import distmatrix
 from alfpy.utils import seqrecords
 from alfpy.version import __version__

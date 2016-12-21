@@ -9,7 +9,6 @@ in amino acid frequencies between two proteins) and weights from
 the scoring matrices used in alignment methods.
 
 """
-import itertools
 import numpy as np
 
 
@@ -122,7 +121,6 @@ class Distance:
         \cdot (f_{j}^{X}-f_{j}^{y})\cdot w_{ij}
 
         """
-        weights = self.matrix.data
         freqs1 = self.freqs[seqnum1]
         freqs2 = self.freqs[seqnum2]
         f = freqs1 - freqs2

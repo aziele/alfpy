@@ -64,7 +64,6 @@ def create_vector(seqcount, pattern):
 
     """
     words = pattern.pat_list
-    word_size = len(words[0])
     data = np.zeros(shape=(seqcount, len(words) * 2))
     for wordidx in range(len(words)):
         for seqidx in pattern.pos_list[wordidx]:

@@ -14,7 +14,9 @@ Word pattern can be retrieved from a set of sequences using either:
 TODO:
     * inspect self.count
     * alfree_format teiresias_format index out of range
+
 """
+from alfpy.utils import seqrecords
 
 
 class Pattern:
@@ -401,12 +403,11 @@ def create_from_bigfasta(filename, k=1):
     word_idx = -1
     seqnum = -1
 
-    for lineno, line in enumerate(fh):
+    for line in fh:
         line = line.strip()
         if line.startswith('>'):
             word = []
             word_size = 0
-            id = line[1:].split()[0]
             seqnum += 1
         else:
             for char in line:

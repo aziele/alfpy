@@ -39,13 +39,10 @@ def main():
     from . import word_pattern
     from . import word_vector
 
-    L = 1
-    U = 5
-
     seq_records = main()
 
     patterns = []
-    for i in range(L, U+1):
+    for i in range(1, 5+1):
         p = word_pattern.create(seq_records.seq_list, i)
         patterns.append(p)
 

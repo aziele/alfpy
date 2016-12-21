@@ -102,7 +102,7 @@ def validate_args(parser):
             try:
                 weights = word_vector.read_weightfile(args.char_weights)
                 args.char_weights = weights
-            except:
+            except Exception:
                 e = 'Invalid format for --char_weights {0}'.format(
                     args.char_weights.name)
                 parser.error(e)
@@ -115,7 +115,7 @@ def validate_args(parser):
             try:
                 freqs = word_vector.read_freqfile(args.char_freqs)
                 args.char_freqs = freqs
-            except:
+            except Exception:
                 e = 'Invalid format for --char_freqs {0}'.format(
                     args.char_freqs.name)
                 parser.error(e)
