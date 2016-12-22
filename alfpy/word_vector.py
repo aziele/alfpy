@@ -158,8 +158,9 @@ class WeightModel:
     def __init__(self, char_weights, wtype='content'):
         self.char_weights = char_weights
         try:
-            func = 'self.{0}'.format(wtype)
-            self.compute = eval(func)
+
+            func = getattr(self, wtype)
+            self.compute = func
         # method does not exist
         except AttributeError:
             msg = 'unknown weight model "%s"' % wtype

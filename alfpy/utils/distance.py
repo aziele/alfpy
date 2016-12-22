@@ -34,9 +34,9 @@ class Distance(object):
 
     def set_disttype(self, disttype):
         try:
-            pwdist_func = 'self.pwdist_{}'.format(disttype)
-            self.pairwise_distance = eval(pwdist_func)
-        # Distance method does not exist.
+            pwdist_func = getattr(self, 'pwdist_{}'.format(disttype))
+            self.pairwise_distance = pwdist_func
+        # Method does not exist.
         except AttributeError:
             msg = 'unknown disttype "{}"'.format(disttype)
             raise ValueError(msg)

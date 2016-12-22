@@ -207,11 +207,11 @@ class Distance:
 
     def set_disttype(self, disttype):
         try:
-            pwdist_func = 'self.pwdist_%s' % disttype
-            self.pairwise_distance = eval(pwdist_func)
+            pwdist_func = getattr(self, 'pwdist_{}'.format(disttype))
+            self.pairwise_distance = pwdist_func
         # Method does not exist.
         except AttributeError:
-            msg = 'unknown disttype "%s"' % disttype
+            msg = 'unknown disttype "{}"'.format(disttype)
             raise ValueError(msg)
 
 
@@ -226,7 +226,6 @@ def main():
     l = ['d', 'd_star', 'd1', 'd1_star', 'd1_star2']
     for el in l:
         distance.set_disttype(el)
-
         matrix = distmatrix.create(seq_records.id_list, distance)
         matrix.display()
 
