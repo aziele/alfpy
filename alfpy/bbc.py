@@ -111,7 +111,7 @@ def create_vectors(seq_records, k=10, alphabet="ATGC"):
 class Distance(distance.Distance):
 
     def __init__(self, vector, disttype='euclid_norm'):
-        return super(Distance, self).__init__(vector, disttype)
+        super(Distance, self).__init__(vector, disttype)
 
 
 def main():

@@ -347,7 +347,7 @@ def main():
     from .utils import distmatrix
 
     seq_records = main1()
-    count, freq, freqs_std1, freqs_std2, countw, freqw, compos = main2()
+    _count, freqs, _freqs_std1, _freqs_std2, _cw, _fw, _compos = main2()
 
     dist = Distance(compos, 'angle_cos_diss')
     matrix = distmatrix.create(seq_records.id_list, dist)

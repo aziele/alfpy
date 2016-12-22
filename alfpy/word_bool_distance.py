@@ -194,7 +194,7 @@ class Distance(distance.Distance):
         u = self[seq1idx]
         v = self[seq2idx]
         n = float(len(u))
-        (nff, nft, ntf, ntt) = _nbool_correspond_all(u, v)
+        (_nff, nft, ntf, ntt) = _nbool_correspond_all(u, v)
         return (ntf + nft - ntt + n) / (ntf + nft + n)
 
 
