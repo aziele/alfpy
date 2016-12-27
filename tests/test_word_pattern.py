@@ -124,6 +124,30 @@ class Test(unittest.TestCase, utils.ModulesCommonTest):
         p2 = word_pattern.Pattern(pat_list, occr_list, [])
         self.assertEqual(p1.format(), p2.format())
 
+    def test_create_from_fasta_dna_word_size2(self):
+        fh = open(self.dna_filename)
+        p = word_pattern.create_from_fasta(fh, word_size=2)
+        fh.close()
+        md5 = utils.calc_md5(p.format())
+        self.assertEqual(md5, '5be104951119e2df4528100b7fc672f4')
+
+    def test_create_from_bigfasta_dna_word_size2(self):
+        p = word_pattern.create_from_bigfasta(self.dna_filename, 2)
+        md5 = utils.calc_md5(p.format())
+        self.assertEqual(md5, '5be104951119e2df4528100b7fc672f4')
+
+    def test_create_from_fasta_pep_word_size1(self):
+        fh = open(self.pep_filename)
+        p = word_pattern.create_from_fasta(fh, word_size=1)
+        fh.close()
+        md5 = utils.calc_md5(p.format())
+        self.assertEqual(md5, '2d4dd98798cb6320975f6919fe43b777')
+
+    def test_create_from_bigfasta_pep_word_size1(self):
+        p = word_pattern.create_from_bigfasta(self.pep_filename, 1)
+        md5 = utils.calc_md5(p.format())
+        self.assertEqual(md5, '2d4dd98798cb6320975f6919fe43b777')
+
 
 if __name__ == '__main__':
     unittest.main()

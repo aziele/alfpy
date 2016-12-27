@@ -381,10 +381,10 @@ def create(seq_list, word_size=1, wordpos=False):
     return _create_wordpattern(seq_list, word_size)
 
 
-def create_from_fasta(handle, k=1, wordpos=False):
+def create_from_fasta(handle, word_size=1, wordpos=False):
     """Create word patterns (Pattern object) from a FASTA file"""
     seq_records = seqrecords.read_fasta(handle)
-    return create(seq_records.seq_list, word_size=k, wordpos=wordpos)
+    return create(seq_records.seq_list, word_size=word_size, wordpos=wordpos)
 
 
 def create_from_bigfasta(filename, k=1):

@@ -9,3 +9,5 @@ script: python -m unittest discover
 branches:
   only:
     - master
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

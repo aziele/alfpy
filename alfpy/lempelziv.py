@@ -121,6 +121,7 @@ def is_reproducible(seq, index, hist_len, last_match=0):
     hist_start = index - hist_len
     for i in range(last_match, hist_start):
         # j == hist_len in last iteration
+        j = None
         for j in range(0, hist_len + 1):
             if seq[i + j] != seq[hist_start + j]:
                 break

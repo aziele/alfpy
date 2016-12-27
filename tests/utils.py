@@ -101,3 +101,5 @@ class ModulesCommonTest:
         fh = open(get_test_data('pep.fa'))
         cls.pep_records = seqrecords.read_fasta(fh)
         fh.close()
+        cls.dna_filename = get_test_data('dna.fa')
+        cls.pep_filename = get_test_data('pep.fa')
