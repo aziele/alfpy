@@ -1,4 +1,4 @@
-|Travis| |PyPI| |Landscape|
+|Travis| |PyPI| |Landscape| |Codecov|
 
 alfpy
 =====
@@ -81,3 +81,6 @@ and pretty much everything else is allowed.
 .. |Landscape| image:: https://landscape.io/github/aziele/alfpy/master/landscape.svg?style=flat
    :target: https://landscape.io/github/aziele/alfpy/master
    :alt: Code Health
+
+.. |Codecov| image:: https://codecov.io/gh/aziele/alfpy/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/aziele/alfpy
