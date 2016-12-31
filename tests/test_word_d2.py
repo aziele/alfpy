@@ -75,6 +75,12 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         ]
         self.assertEqual(matrix.format(), "\n".join(exp))
 
+    def test_set_disttype_throws_exception(self):
+        dist = word_d2.Distance(self.freqs)
+        with self.assertRaises(Exception) as context:
+            dist.set_disttype('nonexistent')
+        self.assertIn('unknown disttype', str(context.exception))
+        
 
 if __name__ == '__main__':
     unittest.main()

@@ -22,14 +22,14 @@ alfpy is also available as a web app: http://www.combio.pl/alfree
 
 
 Requirements
-------------
+============
 
 1. Python (https://www.python.org/) version 2.7 or >= 3.3
 2. NumPy (http://www.numpy.org/).
 
 
 Installation
-------------
+============
 
 1. Recomended way to install is using `pip <https://pip.pypa.io/en/stable/installing/>`_
 ::
@@ -45,13 +45,13 @@ Installation
 
 
 Alfpy usage
------------
+===========
 
 The examples of using Alfpy are available at: http://www.combio.pl/alfree/download/.
 
 
 Testing
--------
+=======
 
 To run tests, go to the alfpy source code directory and type::
 
@@ -64,12 +64,12 @@ If you want to test a specific file (e.g. ``test_word_distance.py``), type::
 
 
 Contact
--------
+=======
 
-Drop us any feedback at: bioinfo@amu.edu.pl or on twitter `@a_zielezinski <https://twitter.com/a_zielezinski`_.
+Drop us any feedback at: bioinfo@amu.edu.pl or on twitter `@a_zielezinski <https://twitter.com/a_zielezinski>`_.
 
 License
--------
+=======
 
 alfpy is under the MIT license; see ``LICENSE.txt``. Distribution, 
 modification and redistribution, incorporation into other software,

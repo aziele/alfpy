@@ -90,6 +90,12 @@ class WordVectorTest(unittest.TestCase, utils.ModulesCommonTest):
         ]
         self.assertEqual(freqs.format(), "\n".join(exp))
 
+    def test_weightmodel_invalid_wtype(self):
+        weights = {'A': 2, 'C': 2, 'G': 2, 'T': 2}
+        with self.assertRaises(Exception) as context:
+            weightmodel = word_vector.WeightModel(weights, 'nonexistent')        
+        self.assertIn('unknown weight model', str(context.exception))
+
     def test_weighted_counts_pattern1(self):
         weights = {'A': 2, 'C': 2, 'G': 2, 'T': 2}
         weightmodel = word_vector.WeightModel(weights)

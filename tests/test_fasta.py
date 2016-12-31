@@ -51,6 +51,12 @@ class FastaTest(unittest.TestCase):
             self._validate_FastaRecord_init(rec, seqidx=i)
         fh.close()
 
+    def test_to_dict(self):
+        fh = open(utils.get_test_data('pep.fa'))
+        d = fasta.to_dict(fasta.parse(fh))
+        fh.close()
+        self.assertEqual(len(d), 4)
+
     def test_parse_fasta_missing_sequences(self):
         ids = ['seq1', 'seq2']
         seqs = ['ATGC', '']

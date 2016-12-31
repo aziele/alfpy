@@ -105,10 +105,9 @@ class FastaRecord():
         if self.description:
             header += " " + self.description
         header += "\n"
-        if wrap:
-            wseq = []
-            for i in range(0, len(self.seq), wrap):
-                wseq.append(self.seq[i:i + wrap])
+        wseq = []
+        for i in range(0, len(self.seq), wrap):
+            wseq.append(self.seq[i:i + wrap])
         return header + "\n".join(wseq)
 
 
