@@ -31,6 +31,15 @@ class Distance:
     def pwdist_d2_squareroot(self, seqidx1, seqidx2):
         return math.sqrt(self.pwdist_d2(seqidx1, seqidx2))
 
+    def set_disttype(self, disttype):
+        try:
+            pwdist_func = getattr(self, 'pwdist_{}'.format(disttype))
+            self.pairwise_distance = pwdist_func
+        # Method does not exist.
+        except AttributeError:
+            msg = 'unknown disttype "{}"'.format(disttype)
+            raise ValueError(msg)
+
 
 def main():
     from .utils.seqrecords import main

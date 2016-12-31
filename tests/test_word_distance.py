@@ -138,6 +138,94 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
                 'seq3       0.3809524 0.3949580 0.0000000']
         self.assertEqual(matrix.format(), "\n".join(data))
 
+    def test_manhattan_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'manhattan')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = [
+            "   3",
+            "seq1       0.0000000 1.2156863 0.7619048",
+            "seq2       1.2156863 0.0000000 0.7899160",
+            "seq3       0.7619048 0.7899160 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_chebyshev_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'chebyshev')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = [
+            "   3",
+            "seq1       0.0000000 0.1936275 0.1250000",
+            "seq2       0.1936275 0.0000000 0.1428571",
+            "seq3       0.1250000 0.1428571 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_braycurtis_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'braycurtis')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = [
+            "   3",
+            "seq1       0.0000000 0.6078431 0.3809524",
+            "seq2       0.6078431 0.0000000 0.3949580",
+            "seq3       0.3809524 0.3949580 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_diff_abs_mult_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'diff_abs_mult')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = [
+            "   3",
+            "seq1       0.0000000 0.0621975 0.0404611",
+            "seq2       0.0621975 0.0000000 0.0531478",
+            "seq3       0.0404611 0.0531478 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_kld_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'kld')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = [
+            "   3",
+            "seq1       0.0000000 0.0932800 0.0435210",
+            "seq2       0.0932800 0.0000000 0.0447391",
+            "seq3       0.0435210 0.0447391 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_lcc_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'lcc')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = [
+            "   3",
+            "seq1       0.0000000 0.6205496 0.4017554",
+            "seq2       0.6205496 0.0000000 0.2550506",
+            "seq3       0.4017554 0.2550506 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_canberra_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'canberra')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = [
+            "   3",
+            "seq1       0.0000000 10.3372258 7.1836838",
+            "seq2       10.3372258 0.0000000 6.6280959",
+            "seq3       7.1836838 6.6280959 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_minkowski_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'minkowski')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = [
+            "   3",
+            "seq1       0.0000000 0.3763512 0.2532387",
+            "seq2       0.3763512 0.0000000 0.2603008",
+            "seq3       0.2532387 0.2603008 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(data))
+
 
 if __name__ == '__main__':
     unittest.main()

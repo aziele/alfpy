@@ -27,6 +27,20 @@ class VectorTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertEqual(vec.shape, (1, 16))
         self.assertEqual(vec.tolist(), exp)
 
+    def test_base_base_correlation_on_dna_k1_alphabet_None(self):
+        seq = 'CTAGGGAACATACCA'
+        vec = bbc.base_base_correlation(seq, 1)
+        exp = [[-0.09531944216197286, 0.08354249482243745,
+                -0.011648745118694886, -0.03537936275852141,
+                0.08354249482243745, -0.07114045890800086,
+                -0.10696198320987654, 0.07735938746326047,
+                0.06569448291953908, -0.10696198320987654,
+                0.14092829842677065, -0.05337075358024692,
+                0.036771706024547365, 0.0058396884306785996,
+                0.02369886445107525, -0.0355666929797287]]
+        self.assertEqual(vec.shape, (1, 16))
+        self.assertEqual(vec.tolist(), exp)
+
     def test_base_base_correlation_on_ambiguous_dna_k1(self):
         """Base_base_correlation function works when a sequence contains
         characters (e.g. Ns) not included in alphabet.

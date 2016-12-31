@@ -323,7 +323,11 @@ class Distance(distance.Distance):
         """
         u = self[seq1idx]
         v = self[seq2idx]
-        d = np.nansum(abs(u - v) / (abs(u) + abs(v)))
+        olderr = np.seterr(invalid='ignore')
+        try:
+            d = np.nansum(abs(u - v) / (abs(u) + abs(v)))
+        finally:
+            np.seterr(**olderr)
         return d
 
     def pwdist_minkowski(self, seq1idx, seq2idx, p=2):

@@ -19,7 +19,7 @@ import numpy as np
 from .utils import distance
 
 
-def base_base_correlation(seq, k, alphabet):
+def base_base_correlation(seq, k, alphabet=None):
     """Compute the base base correlation (BBC) vector for a sequence.
 
     Args:

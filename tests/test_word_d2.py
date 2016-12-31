@@ -61,6 +61,20 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         ]
         self.assertEqual(matrix.format(decimal_places=0), "\n".join(exp))
 
+    def test_freqs_from1_to4_d2_squareroot(self):
+        dist = word_d2.Distance(self.freqs)
+        dist.set_disttype('d2_squareroot')
+        matrix = distmatrix.create(self.pep_records.id_list, dist)
+        exp = [
+            "   4",
+            "seq1       0.0000000 0.1770847 0.2394063 0.3194113",
+            "seq2       0.1770847 0.0000000 0.1933073 0.3011969",
+            "seq3       0.2394063 0.1933073 0.0000000 0.2950560",
+            "seq4       0.3194113 0.3011969 0.2950560 0.0000000"
+
+        ]
+        self.assertEqual(matrix.format(), "\n".join(exp))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -71,6 +71,78 @@ class Test(unittest.TestCase, utils.ModulesCommonTest):
         ]
         self.assertEqual(matrix.format(), "\n".join(exp))
 
+    def test_distance_yule(self):
+        dist = word_bool_distance.Distance(self.vector, 'yule')
+        matrix = distmatrix.create(self.pep_records.id_list, dist)
+        exp = [
+            "   4",
+            "seq1       0.0000000 0.3213773 1.7495396 0.1451613",
+            "seq2       0.3213773 0.0000000 0.4636488 0.0955414",
+            "seq3       1.7495396 0.4636488 0.0000000 0.0000000",
+            "seq4       0.1451613 0.0955414 0.0000000 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(exp))
+
+    def test_distance_rogerstanimoto(self):
+        dist = word_bool_distance.Distance(self.vector, 'rogerstanimoto')
+        matrix = distmatrix.create(self.pep_records.id_list, dist)
+        exp = [
+            "   4",
+            "seq1       0.0000000 0.4313725 0.7096774 0.6324786",
+            "seq2       0.4313725 0.0000000 0.4905660 0.5585586",
+            "seq3       0.7096774 0.4905660 0.0000000 0.5321101",
+            "seq4       0.6324786 0.5585586 0.5321101 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(exp))
+
+    def test_distance_russellrao(self):
+        dist = word_bool_distance.Distance(self.vector, 'russellrao')
+        matrix = distmatrix.create(self.pep_records.id_list, dist)
+        exp = [
+            "   4",
+            "seq1       0.0000000 0.4375000 0.5750000 0.7125000",
+            "seq2       0.4375000 0.0000000 0.5000000 0.7125000",
+            "seq3       0.5750000 0.5000000 0.0000000 0.7000000",
+            "seq4       0.7125000 0.7125000 0.7000000 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(exp))
+
+    def test_distance_sokalsneath(self):
+        dist = word_bool_distance.Distance(self.vector, 'sokalsneath')
+        matrix = distmatrix.create(self.pep_records.id_list, dist)
+        exp = [
+            "   4",
+            "seq1       0.0000000 0.4943820 0.7213115 0.7628866",
+            "seq2       0.4943820 0.0000000 0.5652174 0.7294118",
+            "seq3       0.7213115 0.5652174 0.0000000 0.7073171",
+            "seq4       0.7628866 0.7294118 0.7073171 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(exp))
+
+    def test_distance_sokalmichener(self):
+        dist = word_bool_distance.Distance(self.vector, 'sokalmichener')
+        matrix = distmatrix.create(self.pep_records.id_list, dist)
+        exp = [
+            "   4",
+            "seq1       0.0000000 0.4313725 0.7096774 0.6324786",
+            "seq2       0.4313725 0.0000000 0.4905660 0.5585586",
+            "seq3       0.7096774 0.4905660 0.0000000 0.5321101",
+            "seq4       0.6324786 0.5585586 0.5321101 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(exp))
+
+    def test_distance_kulsinski(self):
+        dist = word_bool_distance.Distance(self.vector, 'kulsinski')
+        matrix = distmatrix.create(self.pep_records.id_list, dist)
+        exp = [
+            "   4",
+            "seq1       0.0000000 0.5588235 0.7258065 0.8034188",
+            "seq2       0.5588235 0.0000000 0.6226415 0.7927928",
+            "seq3       0.7258065 0.6226415 0.0000000 0.7798165",
+            "seq4       0.8034188 0.7927928 0.7798165 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(exp))
+
 
 if __name__ == '__main__':
     unittest.main()
