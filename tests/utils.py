@@ -20,7 +20,7 @@ def calc_md5(obj):
 
 
 def runscript(scriptname, args):
-    cmd = ['./' + scriptname]
+    cmd = [scriptname]
     for arg in args:
         cmd.append(arg)
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE,
