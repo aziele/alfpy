@@ -18,7 +18,7 @@ def get_parser():
         description='''Calculate compositional distances between DNA/protein
         sequences based on word (of length k) occurrences using a Markov model
         of k-2.''',
-        add_help=False, prog='calc_word_comp.py'
+        add_help=False, prog='calc_word_cv.py'
     )
     group = parser.add_argument_group('REQUIRED ARGUMENTS')
     group.add_argument('--fasta', '-f',
@@ -78,7 +78,7 @@ def validate_args(parser):
             k, k1, k2 = [len(p.pat_list[0]) for p in l]
             if not (k == k1 + 1 == k2 + 2):
                 parser.error(
-                    '''word pattern lengths do not follow k, k-1, k-2''')
+                    '''Word pattern lengths do not follow k, k-1, k-2''')
 
         args.word_patterns = l
     else:

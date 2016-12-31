@@ -86,10 +86,15 @@ class ScriptsWordCommonTest(ScriptsCommonTest):
         ScriptsCommonTest.set_test_data()
         cls.filename_char_weights = get_test_data('char_weights.txt')
         cls.filename_char_freqs = get_test_data('char_freqs.txt')
+        cls.filename_pep_1mer_wordpos = get_test_data(
+            'pep.fa.1mer.wordpos.txt')
+        cls.filename_pep_1mer = get_test_data('pep.fa.1mer.txt')        
         cls.filename_pep_2mer_wordpos = get_test_data(
             'pep.fa.2mer.wordpos.txt')
         cls.filename_pep_2mer = get_test_data('pep.fa.2mer.txt')
-
+        cls.filename_pep_3mer_wordpos = get_test_data(
+            'pep.fa.3mer.wordpos.txt')
+        cls.filename_pep_3mer = get_test_data('pep.fa.3mer.txt')
 
 class ModulesCommonTest:
 

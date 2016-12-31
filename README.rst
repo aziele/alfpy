@@ -63,6 +63,11 @@ If you want to test a specific file (e.g. ``test_word_distance.py``), type::
     python -m unittest tests.test_word_distance
 
 
+Contact
+-------
+
+Drop us any feedback at: bioinfo@amu.edu.pl or on twitter `@a_zielezinski <https://twitter.com/a_zielezinski`_.
+
 License
 -------
 

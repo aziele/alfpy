@@ -41,6 +41,27 @@ class SeqRecordsTest(unittest.TestCase):
         fh.close()
         self._validate_seqrecords(rec)
 
+    def test_fasta(self):
+        rec = seqrecords.SeqRecords(
+            id_list=self.ID_LIST, seq_list=self.SEQ_LIST)
+        md5 = utils.calc_md5(rec.fasta(wrap=30))
+        exp = [
+            ">seq1",
+            "MEVVIRSANFTDNAKIIIVQLNASVEINCT",
+            "RPNNYTRKGIRIGPGRAVYAAEEIIGDNTL",
+            "KQVVTKLRE",
+            ">seq2",
+            "MVIRSANFTDNAKIIIVQLNASVEINCTRP",
+            "NNNTRKGIRIGPGRAVYAAEEIIGDIRRAH",
+            "CNIS",
+            ">seq3",
+            "MFTDNAKIIIVQLNASVEINCTRPNNNTRK",
+            "GIHIGPGRAFYATGEIIGDIRQAHCNISGA",
+            "KW",
+            ">seq4",
+            "MFTDNAKIIIVQLNASVEINCTRPNNNTR"
+        ]
+        self.assertEqual(rec.fasta(wrap=30), "\n".join(exp))
 
 if __name__ == '__main__':
     unittest.main()

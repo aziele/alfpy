@@ -8,6 +8,7 @@ class SeqRecords:
         id_list (list)  : List of sequence record identifiers
         seq_list (list) : List of sequence strings
         count (int)     : Number of sequence records
+
     """
 
     def __init__(self, id_list=None, seq_list=None):
@@ -19,6 +20,7 @@ class SeqRecords:
             >>> seq_records = SeqRecords(id_list=ids, seq_list=seqs)
             >>> print seq_records
             SeqRecords (noseqs: 2)
+
         """
         self.count = 0 if not id_list else len(seq_list)
         self.id_list = id_list if id_list else []
@@ -39,7 +41,7 @@ class SeqRecords:
         self.seq_list.append(seq.upper())
         self.count += 1
 
-    def fasta(self):
+    def fasta(self, wrap=70):
         """Return sequence records as a mutli-FASTA string.
 
         Example:
@@ -55,7 +57,7 @@ class SeqRecords:
         l = []
         for seqid, seq in self:
             seq_record = fasta.FastaRecord(seq=seq, seqid=seqid)
-            l.append(seq_record.format())
+            l.append(seq_record.format(wrap=wrap))
         return "\n".join(l)
 
     @property
@@ -86,7 +88,7 @@ class SeqRecords:
 
         Example:
             >>> len(seq_records)
-            3    
+            3
         """
         return len(self.seq_list)
 
