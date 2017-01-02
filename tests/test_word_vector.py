@@ -258,8 +258,7 @@ class WordVectorTest(unittest.TestCase, utils.ModulesCommonTest):
     def test_composition(self):
         comp = word_vector.Composition(self.dna_records.length_list,
             self.pattern3, self.pattern2, self.pattern1)
-        md5 = utils.calc_md5(str(comp.data))
-        self.assertEqual(md5, '6eb0392a774dad8df896131aa32dab22')
+        self.assertEqual(comp.data.shape, (3, 27))
 
     def test_composition_dont_follow_rule(self):
         with self.assertRaises(Exception) as context:
