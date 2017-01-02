@@ -188,9 +188,7 @@ class Pattern:
         for i, w in enumerate(self.pat_list):
             rw = ''
             for c in w:
-                rc = c
-                if c in alphabet_dict:
-                    rc = alphabet_dict[c]
+                rc = alphabet_dict.get(c, c)
                 rw += rc
             if rw not in d:
                 d[rw] = {}

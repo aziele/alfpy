@@ -13,6 +13,7 @@ class WordVectorTest(unittest.TestCase, utils.ModulesCommonTest):
         utils.ModulesCommonTest.set_test_data()
         self.pattern1 = word_pattern.create(self.dna_records.seq_list, 1)
         self.pattern2 = word_pattern.create(self.dna_records.seq_list, 2)
+        self.pattern3 = word_pattern.create(self.dna_records.seq_list, 3)
 
     def test_counts_pattern1(self):
         counts = word_vector.Counts(self.dna_records.length_list,
@@ -254,6 +255,27 @@ class WordVectorTest(unittest.TestCase, utils.ModulesCommonTest):
         ]
         self.assertEqual(bools.format(decimal_places=0), "\n".join(exp))
 
+    def test_composition(self):
+        comp = word_vector.Composition(self.dna_records.length_list,
+            self.pattern3, self.pattern2, self.pattern1)
+        md5 = utils.calc_md5(str(comp.data))
+        self.assertEqual(md5, '6eb0392a774dad8df896131aa32dab22')
+
+    def test_composition_dont_follow_rule(self):
+        with self.assertRaises(Exception) as context:
+            word_vector.Composition(self.dna_records.length_list,
+            self.pattern2, self.pattern1, self.pattern3)
+        self.assertIn('pattern lengths do not ', str(context.exception))
+
+    def test_read_charval_file(self):
+        handle = [
+          '# information',
+          'A  0.0826',
+          'Q  0.0393',
+          'L  0.0965'
+        ]
+        d = word_vector._read_charval_file(handle)
+        self.assertDictEqual(d, {'A': 0.0826, 'Q': 0.0393, 'L': 0.0965})
 
 if __name__ == '__main__':
     unittest.main()

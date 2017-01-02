@@ -121,6 +121,16 @@ class TestDistMatrix(unittest.TestCase):
         ]
         self.assertEqual(matrix.format(), "\n".join(exp))
 
+    def test_highcharts(self):
+        self.assertEqual(len(self.matrix.highcharts()), 3)
+
+    def test_read_highcharts_matrix(self):
+        id_list = ['seq1', 'seq2', 'seq3']
+        data = [[0, 1, 0.35, 0.19], [0, 2, 1.0, 0.55], [1, 2, 0.88, 0.48]]
+        matrix = distmatrix.read_highcharts_matrix(id_list, data)
+        md5 = utils.calc_md5(matrix.format())
+        self.assertEqual(md5, "476c8f5d284a84ee3c7c419bde2d7658")
+        
 
 if __name__ == '__main__':
     unittest.main()

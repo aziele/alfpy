@@ -40,6 +40,23 @@ class Test(unittest.TestCase, utils.ModulesCommonTest):
         ]
         self.assertEqual(p.format(), "\n".join(exp))
 
+    def test_word_pattern_format_teiresias(self):
+        p = word_pattern.create(self.dna_records.seq_list,
+                                word_size=1,
+                                wordpos=True)
+        exp = [
+            '18\t3\tA 0 0 0 1 0 5 0 8 0 12 0 13 0 17 0 22 1 2 1 7 1 11 1 ' +
+            '15 2 2 2 6 2 7 2 9 2 11 2 14',
+            '15\t3\tG 0 3 0 11 0 15 0 20 0 23 0 24 1 3 1 4 1 5 1 6 1 16 1 ' +
+            '17 2 3 2 4 2 5',
+            '13\t3\tC 0 2 0 6 0 7 0 14 0 18 0 19 1 0 1 8 1 13 2 0 2 8 2 12 ' +
+            '2 13',
+            '12\t3\tT 0 4 0 9 0 10 0 16 0 21 1 1 1 9 1 10 1 12 1 14 2 ' +
+            '1 2 10'
+        ]
+        self.assertEqual(p.format('teiresias'), "\n".join(exp))
+        
+
     def test_word_pattern_create_wordsize2_wordposFalse(self):
         p = word_pattern.create(self.dna_records.seq_list,
                                 word_size=2,
