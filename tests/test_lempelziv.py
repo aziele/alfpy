@@ -99,6 +99,11 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         ]
         self.assertEqual(matrix.format(), "\n".join(exp))
 
+    def test_set_disttype_throws_exception(self):
+        with self.assertRaises(Exception) as context:
+            self.dist.set_disttype('nonexitent')
+        self.assertIn('unknown disttype', str(context.exception))
+
 
 if __name__ == '__main__':
     unittest.main()

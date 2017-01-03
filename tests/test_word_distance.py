@@ -177,6 +177,62 @@ class DistanceTest(unittest.TestCase, utils.ModulesCommonTest):
         ]
         self.assertEqual(matrix.format(), "\n".join(data))
 
+    def test_minkowski_throws_exception(self):
+        dist = word_distance.Distance(self.freqs, 'minkowski')
+        with self.assertRaises(Exception) as context:
+            dist.pwdist_minkowski(0, 1, 0.2)
+        self.assertIn('p must be at least 1', str(context.exception))        
+
+    def test_jsd_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'jsd')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = [
+            "   3",
+            "seq1       0.0000000 0.4608882 0.2550278",
+            "seq2       0.4608882 0.0000000 0.2457790",
+            "seq3       0.2550278 0.2457790 0.0000000"
+        ]
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_euclid_squared_freqs(self):
+        # The result of this method is identical to that from decaf+py.
+        dist = word_distance.Distance(self.freqs, 'euclid_squared')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = ['   3',
+                'seq1       0.0000000 0.1416402 0.0641298',
+                'seq2       0.1416402 0.0000000 0.0677565',
+                'seq3       0.0641298 0.0677565 0.0000000']
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_euclid_norm_counts(self):
+        # The result of this method is identical to that from decaf+py.
+        dist = word_distance.Distance(self.counts, 'euclid_norm')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = ['   3',
+                'seq1       0.0000000 7.5498344 5.4772256',
+                'seq2       7.5498344 0.0000000 4.3588989',
+                'seq3       5.4772256 4.3588989 0.0000000']
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_euclid_norm_freqs(self):
+        # The result of this method is identical to that from decaf+py.
+        dist = word_distance.Distance(self.freqs, 'euclid_norm')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = ['   3',
+                'seq1       0.0000000 0.3763512 0.2532387',
+                'seq2       0.3763512 0.0000000 0.2603008',
+                'seq3       0.2532387 0.2603008 0.0000000']
+        self.assertEqual(matrix.format(), "\n".join(data))
+
+    def test_google_freqs(self):
+        dist = word_distance.Distance(self.freqs, 'google')
+        matrix = distmatrix.create(self.dna_records.id_list, dist)
+        data = ['   3',
+                'seq1       0.0000000 0.6078431 0.3809524',
+                'seq2       0.6078431 0.0000000 0.3949580',
+                'seq3       0.3809524 0.3949580 0.0000000']
+        self.assertEqual(matrix.format(), "\n".join(data))
+
 
 if __name__ == '__main__':
     unittest.main()

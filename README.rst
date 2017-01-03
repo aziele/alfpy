@@ -31,18 +31,37 @@ Requirements
 Installation
 ============
 
-1. Recomended way to install is using `pip <https://pip.pypa.io/en/stable/installing/>`_
+Option 1: Get the latest official version
+-----------------------------------------
+
+Install the latest official version with `pip <https://pip.pypa.io/en/stable/installing/>`_
 ::
 
-    pip install alfpy   # add --user if you don't have root
+   sudo pip install alfpy
+
+If you are not allowed to use `sudo`, install alfpy as user::
+
+   sudo pip install --user alfpy
 
 
-2. Alternatively, you can install from Github source code. Download and unzip it.
-::
+
+Option 2: Get the latest development version
+--------------------------------------------
+
+Get it using this shell command, which requires Git::
+
+   git clone https://github.com/aziele/alfpy.git
+
+If you don't feel like using git, just download the package manually as a `gzipped tarball <https://github.com/aziele/alfpy/archive/master.zip/>`_.
+
+Unpack the zip package, go to the directory and run the installation::
 
    cd alfpy
    python setup.py install
 
+or::
+
+   python setup.py install --user
 
 Alfpy usage
 ===========
