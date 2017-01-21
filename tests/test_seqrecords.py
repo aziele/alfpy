@@ -35,6 +35,11 @@ class SeqRecordsTest(unittest.TestCase):
             rec.add(self.ID_LIST[i], self.SEQ_LIST[i])
         self._validate_seqrecords(rec)
 
+    def test_SeqRecords_len(self):
+        rec = seqrecords.SeqRecords(
+            id_list=self.ID_LIST, seq_list=self.SEQ_LIST)
+        self.assertEqual(len(rec), 4)
+
     def test_read_fasta(self):
         fh = open(utils.get_test_data('pep.fa'))
         rec = seqrecords.read_fasta(fh)

@@ -119,6 +119,14 @@ class Test(unittest.TestCase, utils.ModulesCommonTest):
         ]
         self.assertEqual(matrix.format(), "\n".join(exp))
 
+    def test_distance_sokalsneath_throws_exception(self):
+        vector = np.array([[False, False, False], [False, False, False]])
+        dist = word_bool_distance.Distance(vector, 'sokalsneath')
+        with self.assertRaises(ValueError) as context:
+            matrix = distmatrix.create(['s1', 's2'], dist)
+        exp = 'vectors that are entirely false'
+        self.assertIn(exp, str(context.exception))
+
     def test_distance_sokalmichener(self):
         dist = word_bool_distance.Distance(self.vector, 'sokalmichener')
         matrix = distmatrix.create(self.pep_records.id_list, dist)

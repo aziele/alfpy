@@ -32,6 +32,20 @@ class FastaTest(unittest.TestCase):
                               self.DESC_LIST[0])
         self._validate_FastaRecord_init(r, seqidx=0)
 
+    def test_single_FastaRecord_iter(self):
+        r = fasta.FastaRecord(self.SEQ_LIST[3],
+                              self.ID_LIST[3],
+                              self.DESC_LIST[3])
+        i = iter(r)
+        self.assertEqual(next(i), 'M')
+        self.assertEqual(next(i), 'F')
+
+    def test_single_FastaRecord_contains(self):
+        r = fasta.FastaRecord(self.SEQ_LIST[3],
+                              self.ID_LIST[3],
+                              self.DESC_LIST[3])
+        self.assertTrue('MFT' in r)
+
     def test_multiple_FastaRecord_init(self):
         for i in range(len(self.ID_LIST)):
             r = fasta.FastaRecord(self.SEQ_LIST[i],
@@ -56,6 +70,13 @@ class FastaTest(unittest.TestCase):
         d = fasta.to_dict(fasta.parse(fh))
         fh.close()
         self.assertEqual(len(d), 4)
+
+    def test_to_dict_value_error(self):
+        h = ['>seq1\n', 'ATG\n', '>seq1\n', 'ATGC']
+        with self.assertRaises(ValueError) as context:
+            d = fasta.to_dict(fasta.parse(h))
+        self.assertIn('Duplicate key', str(context.exception))
+        
 
     def test_parse_fasta_missing_sequences(self):
         ids = ['seq1', 'seq2']

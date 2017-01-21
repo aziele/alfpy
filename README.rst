@@ -68,6 +68,9 @@ Alfpy usage
 
 The examples of using Alfpy are available at: http://www.combio.pl/alfree/download/.
 
+Using scripts
+-------------
+
 
 Testing
 =======

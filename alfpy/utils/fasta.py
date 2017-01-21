@@ -120,7 +120,6 @@ def parse(handle):
     faiter = (x[1] for x in groupby(handle, lambda l: l[0] == ">"))
     for header in faiter:
         header = next(header)[1:].strip()
-
         seqid = header.split()[0]
         seq = "".join(s.strip() for s in next(faiter))
         desc = header[len(seqid):].strip()
@@ -182,7 +181,7 @@ def to_dict(sequences):
     for record in sequences:
         key = record.id
         if key in d:
-            raise ValueError("Duplicate key '%s'" % key)
+            raise ValueError("Duplicate key '{}'".format(key))
         d[key] = record
     return d
 

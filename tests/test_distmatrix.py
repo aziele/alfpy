@@ -43,6 +43,9 @@ class TestDistMatrix(unittest.TestCase):
     def test_max(self):
         self.assertEqual(self.matrix.max(), 0.35509332999999998)
 
+    def test_is_zero(self):
+        self.assertFalse(self.matrix.is_zero())
+
     def test_normalize(self):
         self.matrix.normalize()
         exp = [

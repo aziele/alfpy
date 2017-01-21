@@ -154,8 +154,13 @@ class Matrix():
         """Return maximum distance value in matrix"""
         return np.amax(self.data)
 
+    def is_zero(self):
+        """Return True if matrix contains only zeros"""
+        return not np.count_nonzero(self.data)
+
     def __repr__(self):
         return str(self.data)
+
 
 
 if __name__ == '__main__':

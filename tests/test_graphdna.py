@@ -21,7 +21,24 @@ class VectorTest(unittest.TestCase, utils.ModulesCommonTest):
                6.5, -1.75064326, 5, -2.92241364, 9.25, -3.81343559]
         self.assertTrue(np.allclose(vec, np.array(exp)))
 
+    def test_2DSGraphVector_ambiguousDNA(self):
+        seq = 'CTAGGGAANNNXXXCATACCA'
+        vec = graphdna._2DSGraphVector(seq)
+
+        exp = [2.99197183, -8.04298066, 9.16666667, -5.78272208,
+               6.5, -1.75064326, 5, -2.92241364, 9.25, -3.81343559]
+        self.assertTrue(np.allclose(vec, np.array(exp)))
+
     def test_2DMGraphVector_ndim10(self):
+        seq = 'CTAGGGAACATACCA'
+        vec = graphdna._2DMGraphVector(seq, 10)
+        exp = [15, 12.14790682, 13.5804606, 15.88980624, 19.16010756,
+               23.55763468, 29.38627489, 37.08035601, 47.23633868,
+               60.66394053]
+        self.assertEqual(vec.shape, (10,))
+        self.assertTrue(np.allclose(vec, np.array(exp)))
+
+    def test_2DMGraphVector_ndim10_ambiguousDNA(self):
         seq = 'CTAGGGAACATACCA'
         vec = graphdna._2DMGraphVector(seq, 10)
         exp = [15, 12.14790682, 13.5804606, 15.88980624, 19.16010756,
@@ -38,6 +55,13 @@ class VectorTest(unittest.TestCase, utils.ModulesCommonTest):
         self.assertTrue(np.allclose(vec, np.array(exp)))
 
     def test_2DNGraphVector(self):
+        seq = 'CTAGGGAACATACCA'
+        vec = graphdna._2DNGraphVector(seq)
+        md5 = utils.calc_md5(vec)
+        self.assertEqual(len(vec), 48)
+        self.assertEqual(md5, '44829cc0277531646d656cdaacd3ae94')
+
+    def test_2DNGraphVector_ambiguousDNA(self):
         seq = 'CTAGGGAACATACCA'
         vec = graphdna._2DNGraphVector(seq)
         md5 = utils.calc_md5(vec)

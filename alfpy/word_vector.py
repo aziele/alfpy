@@ -356,7 +356,7 @@ class EquilibriumFreqs(WordModel):
     """
 
     def __init__(self, equilibrium_frequencies):
-        """0.01
+        """
         equilibrium_frequencies: dict with key : value pairs denoting
                                  symbol : equilibrium_frequency
         """
