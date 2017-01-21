@@ -3,10 +3,16 @@ from setuptools import setup
 # Read a __version__
 exec(open('alfpy/version.py').read())
 
+# Long description
+fh = open('README.rst', encoding='utf-8')
+long_description = fh.read()
+fh.close()
+
 setup(
    name='alfpy',
    version=__version__,
    description="Alignment-free package to compare DNA/RNA/protein sequences (bioinformatics).",
+   long_description=long_description,
    author='Andrzej Zielezinski',
    keywords='alignment-free bioinformatics sequence DNA protein homology phylogeny',
    license="MIT",
