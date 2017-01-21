@@ -4,7 +4,7 @@ from setuptools import setup
 exec(open('alfpy/version.py').read())
 
 # Long description
-fh = open('README.rst', encoding='utf-8')
+fh = open('README.rst')
 long_description = fh.read()
 fh.close()
 
