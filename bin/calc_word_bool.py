@@ -84,7 +84,7 @@ def main():
         p = word_pattern.read(args.word_pattern)
 
     bools = word_vector.Bools(seq_records.length_list, p)
-    dist = word_bool_distance.Distance(bools, 'jaccard')
+    dist = word_bool_distance.Distance(bools, args.distance)
     matrix = distmatrix.create(seq_records.id_list, dist)
 
     if args.out:
