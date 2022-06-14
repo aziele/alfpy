@@ -1,5 +1,3 @@
-|Travis| |PyPI| |Landscape| |Codecov|
-
 alfpy
 =====
 
